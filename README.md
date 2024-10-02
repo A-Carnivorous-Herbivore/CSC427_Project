@@ -7,11 +7,11 @@ The code for CS427 Android app.
 <br/>
 | Name          | NetID         | GitHub ID   | Role          | Experience    |
 | ------------- | ------------- | ------------| ------------- | ------------- |
-|               |               |             |               |               |            
-|               |               |             |               |               |
-|               |               |             |               |               |
-|               |               |             |               |               |
-|               |               |             |               |               |
+|Ruben Neyroud  |Neyroud2       |Zavaonah     |Manager        |Java, SDE, GIT |            
+|Hanqi Mao      |hanqim2        |Picolimpid   |Tech Lead      |No experience  |
+|Becky Blake    |ryblake2       |BeckyBlake   |Developer      |Java           |
+|Hoda Abokhadra |hodaa2         |Hodaz90      |Developer      |MLOps, DevOps, Java|
+|Rudy Jin       |rudyjin2       |A-Carnivorous-Herbivore|Developer|None       |
 |               |               |             |               |               |
 |               |               |             |               |               |
 |               |               |             |               |               |
