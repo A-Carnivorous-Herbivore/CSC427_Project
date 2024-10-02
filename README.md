@@ -13,7 +13,7 @@ The code for CS427 Android app.
 |Hoda Abokhadra |hodaa2         |Hodaz90      |Developer      |MLOps, DevOps, Java|
 |Rudy Jin       |rudyjin2       |A-Carnivorous-Herbivore|Developer|C, C++, Python, Matlab, Verilog, Git      |
 |Sahan Yalavarthi|sahansy2      |sahanyalavarthi|Developer      |Java, C++, Python|
-|               |               |             |               |               |
+|Prithvi Patel  |prithvi7       |prithvip7    |Developer      |Python, Java, C++|
 |               |               |             |               |               |
 <br/>
 
