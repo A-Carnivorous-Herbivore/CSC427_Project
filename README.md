@@ -31,6 +31,7 @@ Meeting location (zoom link):https://meet.google.com/fjy-wtqv-mhk
 Members present: List the NetID of the people who attended the meeting
 </br>
 Meeting notes: Explain the overall team progress and a summary of discussion
+Discussed overall project flow, delegation, and future expectations
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
