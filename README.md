@@ -7,11 +7,11 @@ The code for CS427 Android app.
 <br/>
 | Name          | NetID         | GitHub ID   | Role          | Experience    |
 | ------------- | ------------- | ------------| ------------- | ------------- |
-|Ruben Neyroud  |Neyroud2       |Zavaonah     |Manager        |Java, SDE, GIT |            
-|Hanqi Mao      |hanqim2        |Picolimpid   |Tech Lead      |No experience  |
-|Becky Blake    |ryblake2       |BeckyBlake   |Developer      |Java           |
+|Ruben Neyroud  |Neyroud2       |Zavaonah     |Manager        |Java, C, C++, Python, SDE, GIT |            
+|Hanqi Mao      |hanqim2        |Picolimpid   |Tech Lead      |C, C++, Java, Python, Git  |
+|Becky Blake    |ryblake2       |BeckyBlake   |Developer      |Java, C, C++, Python, Git           |
 |Hoda Abokhadra |hodaa2         |Hodaz90      |Developer      |MLOps, DevOps, Java|
-|Rudy Jin       |rudyjin2       |A-Carnivorous-Herbivore|Developer|None       |
+|Rudy Jin       |rudyjin2       |A-Carnivorous-Herbivore|Developer|C, C++, Python, Matlab, Verilog, Git      |
 |               |               |             |               |               |
 |               |               |             |               |               |
 |               |               |             |               |               |
@@ -30,15 +30,16 @@ Meeting location (zoom link):https://meet.google.com/fjy-wtqv-mhk
 </br>
 Members present: List the NetID of the people who attended the meeting
 </br>
-Meeting notes: Explain the overall team progress and a summary of discussion
+Meeting notes:
+Discussed overall project flow, delegation, and future expectations
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
+|Neyroud2           |Started the Project                                 |Run android build and verify environment setup                       |
+|hanqim2       |Started the Project                            |Run android build and verify environment setup        |
+|ryblake2      |Started the Project                            |Run android build and verify environment setup               |
+|hodaa2    | Started the Project                            |     Run android build and verify environment setup          |
+|rudyjin2     |Started the Project                            |  Run android build and verify environment setup               |
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
