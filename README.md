@@ -40,7 +40,7 @@ Discussed overall project flow, delegation, and future expectations
 |ryblake2      |Started the Project                            |Run android build and verify environment setup               |
 |hodaa2    | Started the Project                            |     Run android build and verify environment setup          |
 |rudyjin2     |Started the Project                            |  Run android build and verify environment setup               |
-|                |                                 |                       |
+|prithvi7     |Started the Project                               |Run android build and verify environment setup              |
 |                |                                 |                       |
 |                |                                 |                       |
 </br>
