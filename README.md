@@ -14,7 +14,7 @@ The code for CS427 Android app.
 |Rudy Jin       |rudyjin2       |A-Carnivorous-Herbivore|Developer|C, C++, Python, Matlab, Verilog, Git      |
 |Sahan Yalavarthi|sahansy2      |sahanyalavarthi|Developer      |Java, C++, Python|
 |Prithvi Patel  |prithvi7       |prithvip7    |Developer      |Python, Java, C++|
-|Brillina Wang               |bw38             |Developer           |Python, Java, C++, Git               |               |
+|Brillina Wang  |bw38           |brillina     |Developer      |Python, Java, C++, Git                 |
 <br/>
 
 
