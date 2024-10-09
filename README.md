@@ -60,8 +60,8 @@ Meeting notes: Discussed next steps for a Short sunday meeting in order to be al
 |      hodaa2          |      Got environment set up                            |        Coming up with preliminary requirements and fully dressed use cases for Sunday meeting               |
 |     rudyjin2           |      Got environment set up                            |        Coming up with preliminary requirements and fully dressed use cases for Sunday meeting               |
 |     sahansy2           |        Got environment set up                          |        Coming up with preliminary requirements and fully dressed use cases for Sunday meeting               |
-|     prithvi7            |         Got environment set up                         |          Coming up with preliminary requirements and fully dressed use cases for Sunday meeting             |
-|           bw38     |            Got environment set up                      |              Coming up with preliminary requirements and fully dressed use cases for Sunday meeting          |
+|      bw38             |         Got environment set up                         |          Coming up with preliminary requirements and fully dressed use cases for Sunday meeting             |
+|              |                                |                |
 </br>
 
 
