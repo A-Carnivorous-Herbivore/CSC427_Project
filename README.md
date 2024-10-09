@@ -50,18 +50,18 @@ Discussed overall project flow, delegation, and future expectations
 </br>
 Members present: List the NetID of the people who attended the meeting
 </br>
-Meeting notes: Explain the overall team progress and a summary of discussion
+Meeting notes: Discussed next steps for a Short sunday meeting in order to be aligned on the requirements we will use to do the diagramming
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
+|   Neyroud2             |            Got environment set up                     |   Coming up with preliminary requirements and fully dressed use cases for Sunday meeting                    |
+|     hanqim2           |     Got environment set up                             |         Coming up with preliminary requirements and fully dressed use cases for Sunday meeting              |
+|       ryblake2          |     Got environment set up                             |       Coming up with preliminary requirements and fully dressed use cases for Sunday meeting                |
+|      hodaa2          |      Got environment set up                            |        Coming up with preliminary requirements and fully dressed use cases for Sunday meeting               |
+|     rudyjin2           |      Got environment set up                            |        Coming up with preliminary requirements and fully dressed use cases for Sunday meeting               |
+|     sahansy2           |        Got environment set up                          |        Coming up with preliminary requirements and fully dressed use cases for Sunday meeting               |
+|     prithvi7            |         Got environment set up                         |          Coming up with preliminary requirements and fully dressed use cases for Sunday meeting             |
+|           bw38     |            Got environment set up                      |              Coming up with preliminary requirements and fully dressed use cases for Sunday meeting          |
 </br>
 
 
