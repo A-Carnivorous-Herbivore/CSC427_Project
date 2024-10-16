@@ -69,16 +69,16 @@ Meeting notes: Discussed next steps for a Short sunday meeting in order to be al
 </br>
 Members present: List the NetID of the people who attended the meeting
 </br>
-Meeting notes: Explain the overall team progress and a summary of discussion
+Meeting notes: Recapped the use cases we are using as well as 
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
+|        Neyroud2        |       Finalized requirements  and commenced UML                          | Finalize UML Schema for next steps  |
+|         hodaa2       |       Finalized requirements               |     Create the component transition graphs                  |
+|          ryblake2      |     Finalized requirements                            |    Create the component transition graphs       |
+|        prithvi7        |         finalized requirements                 |                       |
+|         rudyjin2       |     finalized requirements           |     Create the component transition graph  |
+|        sahansy2        |         Mocked Up Finalized Requirements                  |   Finalize UML schema     |
 |                |                                 |                       |
 |                |                                 |                       |
 </br>
