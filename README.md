@@ -79,7 +79,7 @@ Meeting notes: Recapped the use cases we are using as well as
 |        prithvi7        |         finalized requirements                 |                       |
 |         rudyjin2       |     finalized requirements           |     Create the component transition graph  |
 |        sahansy2        |         Mocked Up Finalized Requirements                  |   Finalize UML schema     |
-|                |                                 |                       |
+|      hanqim2          |      Devise preliminary UML                           |  Disucuss Final UML                     |
 |                |                                 |                       |
 </br>
 
