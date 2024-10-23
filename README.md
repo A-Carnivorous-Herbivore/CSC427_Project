@@ -88,17 +88,19 @@ Meeting notes: Recapped the use cases we are using as well as
 </br>
 Members present: List the NetID of the people who attended the meeting
 </br>
-Meeting notes: Explain the overall team progress and a summary of discussion
+Meeting notes: We went over milestone 3 and 4, splitting up work and preparing for the next two milestones to come. We talked about the
+Advantages and disadvantages of splitting up the team within one milestone or making half the team do milestone 3 and half do milestone 4 to facilitate splitting up tasks
+and making sure everyone is contributing. 
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
+|       Neyroud2         |     Turned in Milestone 2                            |    Iterate on Milestone 1          |
+|       hodaa2         |             Turned in Milestone 2                    |          Iterate on Milestone 1             |
+|         sahansy2       |        Turned in Milestone 2                         |     Iterate on Milestone 1                  |
+|       hanqim2         |       Turned in Milestone 2                          |        Iterate on Milestone 1               |
+|         bw38       |            Turned in Milestone 2                     |          Prepare for Milestone 2             |
+|         rudyjin2       |               Turned in Milestone 2                  |            Prepare for Milestone 2           |
+|            prithvi7    |                   Turned in Milestone 2              |     Prepare for Milestone 2                  |
 |                |                                 |                       |
 </br>
 
