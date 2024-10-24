@@ -1,3 +1,4 @@
+package edu.uiuc.cs427app;
 import android.content.Context;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
