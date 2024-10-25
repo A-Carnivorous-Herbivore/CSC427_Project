@@ -1,43 +1,44 @@
 package edu.uiuc.cs427app;
+
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-
-import static com.mongodb.client.model.Filters.eq;
-
 public class AuthActivity extends AppCompatActivity {
-    private MongoDBClient mongoDBClient;
+
+    private EditText usernameInput;
+    private EditText passwordInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-        // Initialize MongoDB Client
-        mongoDBClient = MongoDBClient.getInstance(this);
+        usernameInput = findViewById(R.id.usernameInput);
+        passwordInput = findViewById(R.id.passwordInput);
+        Button loginButton = findViewById(R.id.loginButton);
+        Button signupButton = findViewById(R.id.signupButton);
 
-        // Fetch user by username
-        fetchUserByUsername("exampleUser");
+        // Set click listeners for buttons
+        loginButton.setOnClickListener(v -> loginUser());
+        signupButton.setOnClickListener(v -> signupUser());
     }
 
-    private void fetchUserByUsername(String username) {
-        MongoDatabase database = mongoDBClient.getMongoClient().getDatabase("AndroidApp");
-        MongoCollection<Document> usersCollection = database.getCollection("users");
+    private void loginUser() {
+        String username = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
 
-        // Find the user with the specified username
-        Document user = usersCollection.find(eq("username", username)).first();
+        Toast.makeText(this, "Login clicked: Username: " + username + ", Password: " + password, Toast.LENGTH_LONG).show();
+    }
 
-        if (user != null) {
-            // User found, show a toast or perform any action
-            String email = user.getString("email"); // Example: fetch the email
-            Toast.makeText(this, "User found: " + email, Toast.LENGTH_SHORT).show();
-        } else {
-            // User not found
-            Toast.makeText(this, "User not found.", Toast.LENGTH_SHORT).show();
-        }
+    private void signupUser() {
+        String username = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
+
+        Toast.makeText(this, "Sign Up clicked: Username: " + username + ", Password: " + password, Toast.LENGTH_LONG).show();
     }
 }

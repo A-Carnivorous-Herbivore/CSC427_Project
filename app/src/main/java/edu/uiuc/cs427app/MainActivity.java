@@ -13,7 +13,8 @@ import edu.uiuc.cs427app.databinding.ActivityMainBinding;
 
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class
+MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
