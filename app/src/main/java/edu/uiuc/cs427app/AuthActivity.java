@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.widget.Spinner;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -22,6 +22,8 @@ public class AuthActivity extends AppCompatActivity {
 
     private EditText usernameInput;
     private EditText passwordInput;
+    private Spinner themeSpinner;
+
     private FirebaseFirestore db;
     private boolean dbConnected = false;
 
@@ -36,6 +38,7 @@ public class AuthActivity extends AppCompatActivity {
 
         usernameInput = findViewById(R.id.usernameInput);
         passwordInput = findViewById(R.id.passwordInput);
+        themeSpinner = findViewById(R.id.themeSpinner); /// themeinput
         Button loginButton = findViewById(R.id.loginButton);
         Button signupButton = findViewById(R.id.signupButton);
 
@@ -78,18 +81,18 @@ public class AuthActivity extends AppCompatActivity {
     private void signupUser() {
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
+        String themePreference = themeSpinner.getSelectedItem().toString(); // Retrieve theme preference
 
+        // Store user data in Firestore
         Map<String, String> user = new HashMap<>();
         user.put("username", username);
         user.put("password", password);
+        user.put("themePreference", themePreference);
 
         db.collection("users")
                 .add(user)
-                .addOnSuccessListener(documentReference -> {
-                    saveUsernameToPreferences(username);
-                    navigate();
-                })
-                .addOnFailureListener(e -> Toast.makeText(AuthActivity.this, "Sign-up failed: " + e, Toast.LENGTH_LONG).show());
+                .addOnSuccessListener(documentReference -> navigate())
+                .addOnFailureListener(e -> Toast.makeText(AuthActivity.this, "Sign-up failed: "+ e, Toast.LENGTH_LONG).show());
     }
 
     private void saveUsernameToPreferences(String username) {

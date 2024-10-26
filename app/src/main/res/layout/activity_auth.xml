@@ -19,7 +19,11 @@
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword" />
-
+    <Spinner
+        android:id="@+id/themeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/theme_options" />
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
