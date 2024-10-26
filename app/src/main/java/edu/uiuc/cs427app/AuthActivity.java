@@ -2,6 +2,7 @@ package edu.uiuc.cs427app;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -66,7 +67,7 @@ public class AuthActivity extends AppCompatActivity {
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                        Toast.makeText(AuthActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                        navigate();
                     } else {
                         Toast.makeText(AuthActivity.this, "Login failed: Incorrect credentials", Toast.LENGTH_LONG).show();
                     }
@@ -84,7 +85,13 @@ public class AuthActivity extends AppCompatActivity {
 
         db.collection("users")
                 .add(user)
-                .addOnSuccessListener(documentReference -> Toast.makeText(AuthActivity.this, "Account created", Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(documentReference -> navigate())
                 .addOnFailureListener(e -> Toast.makeText(AuthActivity.this, "Sign-up failed: "+ e, Toast.LENGTH_LONG).show());
+    }
+    private void navigate() {
+        Toast.makeText(AuthActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(AuthActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
