@@ -41,11 +41,13 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
         Button buttonChicago = findViewById(R.id.buttonChicago);
         Button buttonLA = findViewById(R.id.buttonLA);
         Button buttonNew = findViewById(R.id.buttonAddLocation);
+        Button buttonLogOut = findViewById(R.id.buttonLogout);
 
         buttonChampaign.setOnClickListener(this);
         buttonChicago.setOnClickListener(this);
         buttonLA.setOnClickListener(this);
         buttonNew.setOnClickListener(this);
+        buttonLogOut.setOnClickListener((v -> logOut()));
 
     }
 
@@ -73,5 +75,20 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
+    private void logOut() {
+        // Clear SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear(); // Clear all saved preferences
+        editor.apply();
+
+        // Create an Intent to navigate back to AuthActivity
+        Intent intent = new Intent(MainActivity.this, AuthActivity.class);
+        // Optionally, you can also add flags to clear the activity stack if desired
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish(); // Finish MainActivity to remove it from the back stack
+    }
+
 }
 
