@@ -1,5 +1,7 @@
 package edu.uiuc.cs427app;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.content.Intent;
@@ -21,6 +23,7 @@ public class AuthActivity extends AppCompatActivity {
     private EditText usernameInput;
     private EditText passwordInput;
     private FirebaseFirestore db;
+    private boolean dbConnected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class AuthActivity extends AppCompatActivity {
         // Initialize Firebase Firestore
         db = FirebaseFirestore.getInstance();
         checkDbConnection();
+
         usernameInput = findViewById(R.id.usernameInput);
         passwordInput = findViewById(R.id.passwordInput);
         Button loginButton = findViewById(R.id.loginButton);
@@ -40,11 +44,7 @@ public class AuthActivity extends AppCompatActivity {
         signupButton.setOnClickListener(v -> signupUser());
     }
 
-
-
-    private boolean dbConnected = false;
     private void checkDbConnection() {
-        // Attempt to read a non-existing document
         db.collection("users").document("test").get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -57,16 +57,17 @@ public class AuthActivity extends AppCompatActivity {
                     }
                 });
     }
+
     private void loginUser() {
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
 
-        // Check if user exists in Firestore (for demonstration; ideally, use Firebase Auth for real auth)
         db.collection("users").whereEqualTo("username", username)
                 .whereEqualTo("password", password)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        saveUsernameToPreferences(username);
                         navigate();
                     } else {
                         Toast.makeText(AuthActivity.this, "Login failed: Incorrect credentials", Toast.LENGTH_LONG).show();
@@ -78,20 +79,38 @@ public class AuthActivity extends AppCompatActivity {
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
 
-        // Store user data in Firestore
         Map<String, String> user = new HashMap<>();
         user.put("username", username);
         user.put("password", password);
 
         db.collection("users")
                 .add(user)
-                .addOnSuccessListener(documentReference -> navigate())
-                .addOnFailureListener(e -> Toast.makeText(AuthActivity.this, "Sign-up failed: "+ e, Toast.LENGTH_LONG).show());
+                .addOnSuccessListener(documentReference -> {
+                    saveUsernameToPreferences(username);
+                    navigate();
+                })
+                .addOnFailureListener(e -> Toast.makeText(AuthActivity.this, "Sign-up failed: " + e, Toast.LENGTH_LONG).show());
     }
+
+    private void saveUsernameToPreferences(String username) {
+        SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("username", username);
+        editor.apply(); // Save the username to preferences
+    }
+
     private void navigate() {
-        Toast.makeText(AuthActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+        // Retrieve the username from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "Guest"); // Default to "Guest" if not found
+
+        // Create a dynamic title
+        String dynamicTitle = getString(R.string.app_name) + " - " + username;
+
         Intent intent = new Intent(AuthActivity.this, MainActivity.class);
+        intent.putExtra("dynamicTitle", dynamicTitle); // Pass the dynamic title to MainActivity
         startActivity(intent);
         finish();
     }
+
 }

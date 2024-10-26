@@ -10,7 +10,7 @@ import android.view.View;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import edu.uiuc.cs427app.databinding.ActivityMainBinding;
-
+import android.content.SharedPreferences;
 import android.widget.Button;
 
 public class
@@ -24,6 +24,16 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        String dynamicTitle = getIntent().getStringExtra("dynamicTitle");
+
+        // Update the ActionBar title
+        if (dynamicTitle != null) {
+            getSupportActionBar().setTitle(dynamicTitle);
+        } else {
+            // Fallback to the default app name if not found
+            getSupportActionBar().setTitle(R.string.app_name);
+        }
         // Initializing the UI components
         // The list of locations should be customized per user (change the implementation so that
         // buttons are added to layout programmatically
