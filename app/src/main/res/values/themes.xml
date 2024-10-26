@@ -13,4 +13,27 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!-- New Dark Mode Theme -->
+    <style name="Theme.MyFirstApp.DarkMode" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/dark_grey</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/grey_500</item>
+        <item name="colorSecondaryVariant">@color/grey_700</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Background color for dark mode -->
+        <item name="android:windowBackground">@color/black</item>
+
+        <!-- Status bar color in Dark Mode -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <!-- Customizing button styles -->
+        <item name="buttonStyle">@style/Widget.MaterialComponents.Button.OutlinedButton</item>
+    </style>
+
 </resources>
