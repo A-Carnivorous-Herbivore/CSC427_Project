@@ -88,6 +88,7 @@ public class AuthActivity extends AppCompatActivity {
         user.put("username", username);
         user.put("password", password);
         user.put("themePreference", themePreference);
+        saveUsernameToPreferences(username);
 
         db.collection("users")
                 .add(user)
@@ -112,8 +113,26 @@ public class AuthActivity extends AppCompatActivity {
 
         Intent intent = new Intent(AuthActivity.this, MainActivity.class);
         intent.putExtra("dynamicTitle", dynamicTitle); // Pass the dynamic title to MainActivity
-        startActivity(intent);
-        finish();
+        db.collection("users").whereEqualTo("username", username)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        // Get the themePreference field from the Firestore document
+                        String themePreference = task.getResult().getDocuments().get(0).getString("themePreference");
+
+                        // Create a dynamic title
+
+                        intent.putExtra("themePreference", themePreference); // Pass the theme preference to MainActivity
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(AuthActivity.this, "Failed to retrieve theme preference.", Toast.LENGTH_LONG).show();
+                        Log.d("Firebase", "Error: " + task.getException());
+                    }
+                });
+//        intent.putExtra("themePreference", themePreference); // pass the themepreference we retreieved from firebase
+//        startActivity(intent);
+//        finish();
     }
 
 }

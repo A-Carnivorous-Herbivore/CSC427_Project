@@ -21,6 +21,30 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        String themePreference = getIntent().getStringExtra("themePreference");
+        if (themePreference != null) {
+            switch (themePreference) {
+                case "Default":
+                    setTheme(R.style.Theme_MyFirstApp_Default);
+                    break;
+                case "Dark":
+                    setTheme(R.style.Theme_MyFirstApp_DarkMode);
+                    break;
+                case "Light":
+                    setTheme(R.style.Theme_MyFirstApp_LightMode);
+                    break;
+                case "Blue":
+                    setTheme(R.style.Theme_MyFirstApp_BlueRidge);
+                    break;
+                default:
+                    setTheme(R.style.Theme_MyFirstApp_Default);
+                    break;
+            }
+        } else {
+            setTheme(R.style.Theme_MyFirstApp_Default); // Fallback to default if themePreference is null
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
