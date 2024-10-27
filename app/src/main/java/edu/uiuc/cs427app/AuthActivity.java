@@ -120,8 +120,8 @@ public class AuthActivity extends AppCompatActivity {
                         // Get the themePreference field from the Firestore document
                         String themePreference = task.getResult().getDocuments().get(0).getString("themePreference");
 
-                        // Create a dynamic title
 
+                        intent.putExtra("username", username); // Pass the theme preference to MainActivity
                         intent.putExtra("themePreference", themePreference); // Pass the theme preference to MainActivity
                         startActivity(intent);
                         finish();

@@ -1,8 +1,10 @@
 package edu.uiuc.cs427app;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
@@ -12,13 +14,18 @@ import androidx.navigation.ui.AppBarConfiguration;
 import edu.uiuc.cs427app.databinding.ActivityMainBinding;
 import android.content.SharedPreferences;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FieldValue;
+
 
 public class
 MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
-
+    private FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -47,10 +54,11 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // initialize database
+        db = FirebaseFirestore.getInstance();
 
         String dynamicTitle = getIntent().getStringExtra("dynamicTitle");
-
+        String username = getIntent().getStringExtra("username");
         // Update the ActionBar title
         if (dynamicTitle != null) {
             getSupportActionBar().setTitle(dynamicTitle);
@@ -96,9 +104,63 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.buttonAddLocation:
                 // Implement this action to add a new location to the list of locations
+
+                showAddCityDialog();
                 break;
         }
     }
+    private void showAddCityDialog() {
+        // Create an EditText to input the city name
+        final EditText cityInput = new EditText(this);
+        cityInput.setHint("Enter city name");
+
+        // Build the dialog
+        new AlertDialog.Builder(this)
+                .setTitle("Add New Location")
+                .setMessage("Enter the name of the city:")
+                .setView(cityInput)
+                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String cityName = cityInput.getText().toString().trim();
+                        if (!cityName.isEmpty()) {
+                            addCityToDatabase(cityName);
+                            Toast.makeText(MainActivity.this, "City name "+cityName, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "City name cannot be empty", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+    private void addCityToDatabase(String cityName) {
+        // Query the `users` collection to find the document with the matching username field
+        String username = getIntent().getStringExtra("username");
+        Toast.makeText(MainActivity.this, username+ "want to add city"+ cityName , Toast.LENGTH_SHORT).show();
+        db.collection("users")
+                .whereEqualTo("username", username)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        // Get the document ID of the first matching document
+                        String documentId = queryDocumentSnapshots.getDocuments().get(0).getId();
+
+                        // Now use the document ID to update the locations array
+                        db.collection("users").document(documentId)
+                                .update("locations", FieldValue.arrayUnion(cityName))
+                                .addOnSuccessListener(aVoid ->
+                                        Toast.makeText(MainActivity.this, "City added successfully", Toast.LENGTH_SHORT).show())
+                                .addOnFailureListener(e ->
+                                        Toast.makeText(MainActivity.this, "Failed to add city: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                    } else {
+                        Toast.makeText(MainActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(MainActivity.this, "Failed to find user: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+    }
+
     private void logOut() {
         // Clear SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
