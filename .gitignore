@@ -2,3 +2,4 @@
 *.lock
 *.bin
 
+.idea/libraries/
