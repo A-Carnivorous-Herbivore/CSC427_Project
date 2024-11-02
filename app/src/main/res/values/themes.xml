@@ -96,6 +96,32 @@
         <item name="android:textColorHint">@color/oxford_blue</item>
     </style>
 
+    <style name="Theme.MyFirstApp.SunnyDay" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color (Yellow) -->
+        <item name="colorPrimary">@color/yellow_100</item>
+        <item name="colorPrimaryVariant">@color/orange_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+
+        <!-- Secondary brand color (Amber) -->
+        <item name="colorSecondary">@color/amber_500</item>
+        <item name="colorSecondaryVariant">@color/amber_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Background color -->
+        <item name="android:windowBackground">@color/yellow_100</item>
+
+        <!-- Status bar color -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <!-- Button colors -->
+        <item name="colorButtonNormal">@color/orange_500</item>
+
+        <!-- EditText styles -->
+        <item name="android:backgroundTint">@color/amber_200</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/grey_600</item>
+    </style>
+
 
 
 

@@ -47,6 +47,9 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                 case "Blue":
                     setTheme(R.style.Theme_MyFirstApp_BlueRidge);
                     break;
+                case "Sunshine":
+                    setTheme(R.style.Theme_MyFirstApp_SunnyDay);
+                    break;
                 default:
                     setTheme(R.style.Theme_MyFirstApp_Default);
                     break;
@@ -72,7 +75,7 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
             // Toast.makeText(MainActivity.this, dynamicTitle, Toast.LENGTH_SHORT).show();
         } else {
             // Fallback to the default app name if not found
-            // getSupportActionBar().setTitle(R.string.app_name);
+            getSupportActionBar().setTitle(R.string.app_name);
         }
         // Initializing the UI components
         // The list of locations should be customized per user (change the implementation so that

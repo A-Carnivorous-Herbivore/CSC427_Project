@@ -79,4 +79,23 @@
     <color name="yale_blue">#1E386B</color>
     <color name="oxford_blue">#102447</color>
 
+    <!-- SunnyDay Theme Colors -->
+    <color name="yellow_500">#FFEB3B</color>
+    <color name="yellow_700">#FBC02D</color>
+
+    <color name="orange_100">#FFE0B2</color>
+
+
+    <!-- Supporting Greys -->
+    <color name="sunnyday_grey_100">#FFF5F5F5</color>
+    <color name="sunnyday_grey_300">#FFE0E0E0</color>
+    <color name="sunnyday_grey_500">#FF9E9E9E</color>
+    <color name="sunnyday_grey_700">#FF616161</color>
+    <color name="sunnyday_grey_900">#FF212121</color>
+
+    <!-- Sunset Accent Colors -->
+    <color name="sunset_red_200">#FFEF9A9A</color>
+    <color name="sunset_red_500">#FFF44336</color>
+    <color name="sunset_red_700">#FFD32F2F</color>
+
 </resources>
