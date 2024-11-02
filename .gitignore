@@ -1,0 +1,5 @@
+.gradle/
+*.lock
+*.bin
+
+.idea/libraries/
