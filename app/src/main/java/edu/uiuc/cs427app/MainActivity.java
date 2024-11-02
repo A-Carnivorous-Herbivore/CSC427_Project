@@ -185,8 +185,10 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                         // Now use the document ID to update the locations array
                         db.collection("users").document(documentId)
                                 .update("locations", FieldValue.arrayUnion(cityName))
-                                .addOnSuccessListener(aVoid ->
-                                        Toast.makeText(MainActivity.this, "City added successfully", Toast.LENGTH_SHORT).show())
+                                .addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(MainActivity.this, "City added successfully", Toast.LENGTH_SHORT).show();
+                                    addCityToUI(cityName); // Add city to UI after successful database update
+                                })
                                 .addOnFailureListener(e ->
                                         Toast.makeText(MainActivity.this, "Failed to add city: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                     } else {

@@ -19,6 +19,11 @@
     <color name="grey_700">#FF616161</color>
     <color name="grey_800">#FF424242</color>
     <color name="grey_900">#FF212121</color>
+    <color name="sunnyday_grey_100">#FFF5F5F5</color>
+    <color name="sunnyday_grey_300">#FFE0E0E0</color>
+    <color name="sunnyday_grey_500">#FF9E9E9E</color>
+    <color name="sunnyday_grey_700">#FF616161</color>
+    <color name="sunnyday_grey_900">#FF212121</color>
     <color name="dark_grey">#FF424242</color>
 
     <!-- Primary Color Variants -->
@@ -29,6 +34,9 @@
     <color name="red_200">#FFEF9A9A</color>
     <color name="red_500">#FFF44336</color>
     <color name="red_700">#FFD32F2F</color>
+    <color name="sunset_red_200">#FFEF9A9A</color>
+    <color name="sunset_red_500">#FFF44336</color>
+    <color name="sunset_red_700">#FFD32F2F</color>
 
     <color name="green_200">#FFA5D6A7</color>
     <color name="green_500">#FF4CAF50</color>
@@ -62,8 +70,11 @@
 
     <color name="orange_500">#FF9800</color>
     <color name="orange_700">#F57C00</color>
+    <color name="orange_100">#FFE0B2</color>
 
     <color name="yellow_100">#FFF9C4</color>
+    <color name="yellow_500">#FFEB3B</color>
+    <color name="yellow_700">#FBC02D</color>
 
 
 
@@ -78,5 +89,7 @@
     <color name="savoy_blue">#596BB3</color>
     <color name="yale_blue">#1E386B</color>
     <color name="oxford_blue">#102447</color>
+
+
 
 </resources>
