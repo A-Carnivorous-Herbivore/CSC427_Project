@@ -113,7 +113,7 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
+| hanqim2        |   Try on different database     | Make it work and do task 1 and 2|
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
@@ -132,7 +132,7 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
+|hanqim2         |   Finish task 1 and 2           | read through milestone4 and implement some function|
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
