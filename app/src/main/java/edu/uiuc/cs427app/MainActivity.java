@@ -19,6 +19,9 @@ import android.widget.Toast;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FieldValue;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class
 MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -58,13 +61,18 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
         db = FirebaseFirestore.getInstance();
 
         String dynamicTitle = getIntent().getStringExtra("dynamicTitle");
+
         String username = getIntent().getStringExtra("username");
         // Update the ActionBar title
         if (dynamicTitle != null) {
-            getSupportActionBar().setTitle(dynamicTitle);
+            ActionBar actionBar = getSupportActionBar();
+            // Toast.makeText(MainActivity.this, actionBar == null ? "ActionBar is null" : "ActionBar is not null", Toast.LENGTH_SHORT).show();
+            actionBar.setTitle((CharSequence) dynamicTitle);
+            // getSupportActionBar().setTitle(dynamicTitle);
+            // Toast.makeText(MainActivity.this, dynamicTitle, Toast.LENGTH_SHORT).show();
         } else {
             // Fallback to the default app name if not found
-            getSupportActionBar().setTitle(R.string.app_name);
+            // getSupportActionBar().setTitle(R.string.app_name);
         }
         // Initializing the UI components
         // The list of locations should be customized per user (change the implementation so that
