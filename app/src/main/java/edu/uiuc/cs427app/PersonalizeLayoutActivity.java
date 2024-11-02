@@ -1,5 +1,5 @@
 package edu.uiuc.cs427app;
-
+import android.content.Intent;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
@@ -16,6 +16,31 @@ public class PersonalizeLayoutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String themePreference = getIntent().getStringExtra("theme");
+//        String themePreference = "Light";
+        if (themePreference != null) {
+            switch (themePreference) {
+                case "Default":
+                    setTheme(R.style.Theme_MyFirstApp_Default);
+                    break;
+                case "Dark":
+                    setTheme(R.style.Theme_MyFirstApp_DarkMode);
+                    break;
+                case "Light":
+                    setTheme(R.style.Theme_MyFirstApp_LightMode);
+                    break;
+                case "Blue":
+                    setTheme(R.style.Theme_MyFirstApp_BlueRidge);
+                    break;
+                default:
+                    setTheme(R.style.Theme_MyFirstApp_Default);
+                    break;
+            }
+        } else {
+            setTheme(R.style.Theme_MyFirstApp_Default); // Fallback to default if themePreference is null
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personalize_layout);
 
@@ -36,7 +61,27 @@ public class PersonalizeLayoutActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String selectedTheme = themes[which];
                         saveThemePreference(selectedTheme);
+
+                        Intent intent = new Intent(PersonalizeLayoutActivity.this, MainActivity.class);
+                        intent.putExtra("themePreference", selectedTheme);
+                        String dynamicTitle = getIntent().getStringExtra("dynamicTitle");
+                        intent.putExtra("dynamicTitle", dynamicTitle); // Example if you have a dynamic title
+                        String username = getIntent().getStringExtra("username");
+                        intent.putExtra("username", username); // Optional, if you want to pass the username
+
+
+
+//                        Intent resultIntent = new Intent();
+//                        resultIntent.putExtra("newThemePreference", selectedTheme);
+//                        setResult(RESULT_OK, resultIntent);
+
                         Toast.makeText(PersonalizeLayoutActivity.this, "Theme set to " + selectedTheme, Toast.LENGTH_SHORT).show();
+
+                        // Start a new instance of MainActivity
+                        startActivity(intent);
+
+                        // Finish PersonalizeLayoutActivity to prevent returning here
+                        finish();
                     }
                 })
                 .show();
