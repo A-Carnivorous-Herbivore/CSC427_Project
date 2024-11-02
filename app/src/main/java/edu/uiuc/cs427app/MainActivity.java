@@ -55,6 +55,9 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                 case "Blue":
                     setTheme(R.style.Theme_MyFirstApp_BlueRidge);
                     break;
+                case "Sunshine":
+                    setTheme(R.style.Theme_MyFirstApp_SunnyDay);
+                    break;
                 default:
                     setTheme(R.style.Theme_MyFirstApp_Default);
                     break;

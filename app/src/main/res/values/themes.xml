@@ -70,7 +70,7 @@
         <item name="android:backgroundTint">@color/grey_100</item> <!-- Background color for EditText fields -->
     </style>
 
-    <style name="Theme.MyFirstApp.BlueRidge" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.MyFirstApp.BlueRidge" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color (Alice Blue) -->
         <item name="colorPrimary">@color/alice_blue</item>
         <item name="colorPrimaryVariant">@color/yale_blue</item>
