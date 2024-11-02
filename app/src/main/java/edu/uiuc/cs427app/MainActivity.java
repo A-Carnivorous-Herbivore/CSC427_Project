@@ -8,7 +8,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
-
+import androidx.core.content.ContextCompat;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import edu.uiuc.cs427app.databinding.ActivityMainBinding;
@@ -30,6 +32,7 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
 
         String themePreference = getIntent().getStringExtra("themePreference");
+//        String themePreference = "Light";
         if (themePreference != null) {
             switch (themePreference) {
                 case "Default":
@@ -74,12 +77,15 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
         Button buttonLA = findViewById(R.id.buttonLA);
         Button buttonNew = findViewById(R.id.buttonAddLocation);
         Button buttonLogOut = findViewById(R.id.buttonLogout);
+        Button buttonPersonalizeLayout = findViewById(R.id.buttonPersonalizeLayout); // layout
 
         buttonChampaign.setOnClickListener(this);
         buttonChicago.setOnClickListener(this);
         buttonLA.setOnClickListener(this);
         buttonNew.setOnClickListener(this);
         buttonLogOut.setOnClickListener((v -> logOut()));
+
+        buttonPersonalizeLayout.setOnClickListener(this);
 
     }
 
@@ -106,6 +112,14 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                 // Implement this action to add a new location to the list of locations
 
                 showAddCityDialog();
+                break;
+            case R.id.buttonPersonalizeLayout:
+                // Navigate to PersonalizeLayoutActivity
+                intent = new Intent(MainActivity.this, PersonalizeLayoutActivity.class);
+                String username = getIntent().getStringExtra("username");
+                intent.putExtra("username",username);
+                intent.putExtra("theme",username);
+                startActivity(intent);
                 break;
         }
     }

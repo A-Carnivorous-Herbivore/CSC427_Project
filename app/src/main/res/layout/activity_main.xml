@@ -99,6 +99,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add a location" />
+        <Button
+            android:id="@+id/buttonPersonalizeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Personalize Layout" />
+
+        <!-- Spinner for Theme Selection -->
+<!--        <Spinner-->
+<!--            android:id="@+id/themeSpinner"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="gone"-->
+<!--            android:entries="@array/theme_options" />-->
 
     </LinearLayout>
 

@@ -64,7 +64,7 @@
         <item name="colorButtonNormal">@color/blue_500</item> <!-- Button background color -->
 
         <!-- Customizing EditText styles -->
-        <item name="editTextBackground">@color/grey_100</item> <!-- Background color for EditText fields -->
+<!--        <item name="editTextBackground">@color/grey_100</item> &lt;!&ndash; Background color for EditText fields &ndash;&gt;-->
         <item name="android:textColor">@color/black</item> <!-- Text color in EditText fields -->
         <item name="android:textColorHint">@color/grey_600</item> <!-- Hint text color -->
         <item name="android:backgroundTint">@color/grey_100</item> <!-- Background color for EditText fields -->

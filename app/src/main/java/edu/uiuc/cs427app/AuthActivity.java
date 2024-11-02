@@ -119,10 +119,17 @@ public class AuthActivity extends AppCompatActivity {
                     if (task.isSuccessful() && !task.getResult().isEmpty()) {
                         // Get the themePreference field from the Firestore document
                         String themePreference = task.getResult().getDocuments().get(0).getString("themePreference");
-
+                        Toast.makeText(AuthActivity.this, themePreference, Toast.LENGTH_LONG).show();
 
                         intent.putExtra("username", username); // Pass the theme preference to MainActivity
-                        intent.putExtra("themePreference", themePreference); // Pass the theme preference to MainActivity
+                        if (themePreference != null) {
+                            Toast.makeText(AuthActivity.this, "Not NULL", Toast.LENGTH_LONG).show();
+                            intent.putExtra("themePreference", themePreference); // Pass the theme preference to MainActivity
+                        } else {
+                            // Assign a default value if themePreference is null
+                            Toast.makeText(AuthActivity.this, "NULL", Toast.LENGTH_LONG).show();
+                            intent.putExtra("themePreference", "Default");
+                        }
                         startActivity(intent);
                         finish();
                     } else {
