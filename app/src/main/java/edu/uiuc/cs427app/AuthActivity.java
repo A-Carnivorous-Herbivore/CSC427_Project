@@ -26,7 +26,10 @@ public class AuthActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private boolean dbConnected = false;
-
+    /*
+        onCreate: Instantializes the activity, connecting to the firestore database, retrieving the user information
+        and setting click listeners for the log in and sign up buttons.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +41,7 @@ public class AuthActivity extends AppCompatActivity {
 
         usernameInput = findViewById(R.id.usernameInput);
         passwordInput = findViewById(R.id.passwordInput);
-        themeSpinner = findViewById(R.id.themeSpinner); /// themeinput
+        //themeSpinner = findViewById(R.id.themeSpinner); /// themeinput
         Button loginButton = findViewById(R.id.loginButton);
         Button signupButton = findViewById(R.id.signupButton);
 
@@ -46,7 +49,9 @@ public class AuthActivity extends AppCompatActivity {
         loginButton.setOnClickListener(v -> loginUser());
         signupButton.setOnClickListener(v -> signupUser());
     }
-
+    /*
+    This Method checks the database connection by making a dummy call and making sure that the connection is up.
+    */
     private void checkDbConnection() {
         db.collection("users").document("test").get()
                 .addOnCompleteListener(task -> {
@@ -60,7 +65,9 @@ public class AuthActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    /*
+    LoginUser() handles the log in function, checking the database for the user credentials and returning an error if it is incorrect
+     */
     private void loginUser() {
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
@@ -77,17 +84,19 @@ public class AuthActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    /*
+    signupUser(): this method signs up a user if they dont exist within a database
+     */
     private void signupUser() {
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
-        String themePreference = themeSpinner.getSelectedItem().toString(); // Retrieve theme preference
+        //String themePreference = themeSpinner.getSelectedItem().toString(); // Retrieve theme preference
 
         // Store user data in Firestore
         Map<String, String> user = new HashMap<>();
         user.put("username", username);
         user.put("password", password);
-        user.put("themePreference", themePreference);
+        user.put("themePreference", "default");
         saveUsernameToPreferences(username);
 
         db.collection("users")
@@ -95,14 +104,18 @@ public class AuthActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> navigate())
                 .addOnFailureListener(e -> Toast.makeText(AuthActivity.this, "Sign-up failed: "+ e, Toast.LENGTH_LONG).show());
     }
-
+    /*
+    This method sets the username within the shared preferences to be used within the app
+     */
     private void saveUsernameToPreferences(String username) {
         SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("username", username);
         editor.apply(); // Save the username to preferences
     }
-
+    /*
+    This function handles the navigation between the auth and the main activity, setting up the the context to be passed throughout the app
+     */
     private void navigate() {
         // Retrieve the username from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE);
@@ -119,10 +132,17 @@ public class AuthActivity extends AppCompatActivity {
                     if (task.isSuccessful() && !task.getResult().isEmpty()) {
                         // Get the themePreference field from the Firestore document
                         String themePreference = task.getResult().getDocuments().get(0).getString("themePreference");
-
+                        Toast.makeText(AuthActivity.this, themePreference, Toast.LENGTH_LONG).show();
 
                         intent.putExtra("username", username); // Pass the theme preference to MainActivity
-                        intent.putExtra("themePreference", themePreference); // Pass the theme preference to MainActivity
+                        if (themePreference != null) {
+                            Toast.makeText(AuthActivity.this, "Not NULL", Toast.LENGTH_LONG).show();
+                            intent.putExtra("themePreference", themePreference); // Pass the theme preference to MainActivity
+                        } else {
+                            // Assign a default value if themePreference is null
+                            Toast.makeText(AuthActivity.this, "NULL", Toast.LENGTH_LONG).show();
+                            intent.putExtra("themePreference", "Default");
+                        }
                         startActivity(intent);
                         finish();
                     } else {

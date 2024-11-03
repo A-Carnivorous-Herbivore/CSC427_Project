@@ -96,6 +96,7 @@
         <item name="android:textColorHint">@color/oxford_blue</item>
     </style>
 
+
     <style name="Theme.MyFirstApp.SunnyDay" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color (Yellow) -->
         <item name="colorPrimary">@color/yellow_100</item>
@@ -118,15 +119,9 @@
 
         <!-- EditText styles -->
         <item name="android:backgroundTint">@color/amber_200</item>
-        <item name="android:textColor">@color/sunnyday_grey_700</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textColorHint">@color/grey_600</item>
     </style>
-
-
-
-
-
-
 
 
 </resources>

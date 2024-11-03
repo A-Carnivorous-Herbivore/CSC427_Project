@@ -11,7 +11,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener{
-
+    /*
+    This onCreate instantiates the details when the user hits the details button
+    right now it is a skeleton while we implement the map display
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
