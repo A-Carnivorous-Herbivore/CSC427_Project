@@ -118,7 +118,7 @@ Discussed progress and the bottlenecks of learning android as well as implementi
 | rudyjin2       |  Started with Theme Design for Task 3; tested out different themes  |The integration of All Parts  |
 | sahansy2       |  Worked with Rudy on "Started with Theme Design for Task 3; tested out different themes" | Continue to work on issues with theme for Task 3 |
 |        neyroud2        |         Trying different databases                       |          Implement databases and task 1             |
-|                |                                 |                       |
+|      ryblake2  | Looked into displaying cities on ui fetched from database             |  Implement dynamic display in ui  |
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
@@ -138,7 +138,7 @@ Went over progress and how to better work on task 1 and 3 together given how the
 |rudyjin2        |   Debugged and fixed the low level logic; integrated different components together | Prepare for Milestone 4 |
 |sahansy2        | Debugged issues with two themes | Prep for Milestone 4  |
 |         neyroud2       |     Implemented firestore database                            |    finish up milestone 1                   |
-|                |                                 |                       |
+| ryblake2 |       finished up task 2 with city display        |    prepare for milestone 4  |
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
