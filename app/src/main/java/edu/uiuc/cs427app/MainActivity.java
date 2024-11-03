@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import androidx.core.content.ContextCompat;
 import android.widget.LinearLayout;
@@ -232,9 +233,19 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                 0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
         cityTextView.setText(cityName);
 
-        Button showDetailsButton = new Button(this);
+//        Button showDetailsButton = new Button(this);
+        Button showDetailsButton = new Button(new ContextThemeWrapper(this, R.style.RoundedButtonStyle));
         showDetailsButton.setText("Show Details");
+        showDetailsButton.setBackgroundResource(R.drawable.rounded_button);
         showDetailsButton.setOnClickListener(v -> openCityDetails(cityName));
+
+        // Set layout parameters with margin to add space between buttons
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        buttonParams.setMargins(0, 8, 0, 8); // Adjust the margins as needed (top and bottom for vertical spacing)
+        showDetailsButton.setLayoutParams(buttonParams);
 //        showDetailsButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.purple_500));
 //        showDetailsButton.setTextColor(ContextCompat.getColor(this, android.R.color.white));
 
