@@ -233,8 +233,7 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                 0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
         cityTextView.setText(cityName);
 
-//        Button showDetailsButton = new Button(this);
-        Button showDetailsButton = new Button(new ContextThemeWrapper(this, R.style.RoundedButtonStyle));
+        Button showDetailsButton = new Button(this);
         showDetailsButton.setText("Show Details");
         showDetailsButton.setBackgroundResource(R.drawable.rounded_button);
         showDetailsButton.setOnClickListener(v -> openCityDetails(cityName));
