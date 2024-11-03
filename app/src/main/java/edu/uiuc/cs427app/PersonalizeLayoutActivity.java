@@ -13,7 +13,9 @@ import com.google.firebase.firestore.FieldValue;
 public class PersonalizeLayoutActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private Spinner themeSpinner;
-
+/*
+This on create switches to the desired theme and connects to the database
+ */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String themePreference = getIntent().getStringExtra("theme");
@@ -50,7 +52,9 @@ public class PersonalizeLayoutActivity extends AppCompatActivity {
         Button changeThemeButton = findViewById(R.id.buttonChangeTheme);
         changeThemeButton.setOnClickListener(v -> changeThemePreference());
     }
-
+    /*
+    This changeThemePreference manages the setting of themes and passes it to other activities to be enforced
+     */
     private void changeThemePreference() {
         final String[] themes = {"Default", "Dark", "Light", "Blue"};
 
@@ -86,7 +90,9 @@ public class PersonalizeLayoutActivity extends AppCompatActivity {
                 })
                 .show();
     }
-
+/*
+This saves the theme preference to the database so that the next time a user logs in they will be greeted by the same theme
+ */
     private void saveThemePreference(String themePreference) {
         String username = getIntent().getStringExtra("username");
         Toast.makeText(PersonalizeLayoutActivity.this, username, Toast.LENGTH_SHORT).show();

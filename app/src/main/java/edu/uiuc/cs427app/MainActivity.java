@@ -36,6 +36,10 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseFirestore db;
     private ActivityResultLauncher<Intent> personalizeLayoutLauncher;
     private LinearLayout locationsContainer;
+    /*
+    This on create instantiates the main activity, especially with regard to applying the theme and connecting to the
+    database in order to display the users city list
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -107,7 +111,9 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     }
-
+    /*
+    This onClick handles the logic for which view will be updated
+     */
     @Override
     public void onClick(View view) {
         Intent intent;
@@ -147,7 +153,9 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-
+/*
+This function displays whether a city was added succesfully or not to the city list.
+ */
     private void showAddCityDialog() {
         // Create an EditText to input the city name
         final EditText cityInput = new EditText(this);
@@ -173,6 +181,10 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                 .setNegativeButton("Cancel", null)
                 .show();
     }
+    /*
+    This function adds the city to the users city list by querying the database, retunring an error message if it is
+    not succesful
+     */
     private void addCityToDatabase(String cityName) {
         // Query the `users` collection to find the document with the matching username field
         String username = getIntent().getStringExtra("username");
@@ -201,6 +213,9 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                 .addOnFailureListener(e ->
                         Toast.makeText(MainActivity.this, "Failed to find user: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
+    /*
+    This function fetches the users city list from the database in order to be displayed, returning an error toast on failure
+     */
     private void fetchAndDisplayCities() {
         String username = getIntent().getStringExtra("username");
         db.collection("users")
@@ -222,7 +237,10 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                 .addOnFailureListener(e ->
                         Toast.makeText(MainActivity.this, "Failed to load cities: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
-
+/*
+This function handles getting the cities and displaying their name as well as the detail, and remove button. These buttons also
+allow the user to remove items from the list or enter the details of a specific city
+ */
     private void addCityToUI(String cityName) {
         LinearLayout cityLayout = new LinearLayout(this);
         cityLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -262,7 +280,9 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
 
         locationsContainer.addView(cityLayout);
     }
-
+/*
+This function handles removing a specific city from the users saved city list
+ */
     private void removeCityFromDatabase(String cityName) {
         String username = getIntent().getStringExtra("username");
 
@@ -287,12 +307,17 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
                         Toast.makeText(MainActivity.this, "Failed to find user: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
-
+/*
+openCityDetails opens the details activity for a given city
+ */
     private void openCityDetails(String cityName) {
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("city", cityName);
         startActivity(intent);
     }
+    /*
+    The log out button clears the context and navigates back to the auth activity page for another user to signup/login
+     */
     private void logOut() {
         // Clear SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
