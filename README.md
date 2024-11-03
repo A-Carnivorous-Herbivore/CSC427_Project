@@ -109,14 +109,15 @@ and making sure everyone is contributing.
 </br>
 Members present: List the NetID of the people who attended the meeting
 </br>
-Meeting notes: Explain the overall team progress and a summary of discussion
+Meeting notes:
+Discussed progress and the bottlenecks of learning android as well as implementing the database. Discussed git practices and how to do the milestone with so many people
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
 | hanqim2        |   Try on different database     | Make it work and do task 1 and 2|
 | rudyjin2       |  Started with Theme Design for Task 3; tested out different themes  |The integration of All Parts  |
 | sahansy2       |  Worked with Rudy on "Started with Theme Design for Task 3; tested out different themes" | Continue to work on issues with theme for Task 3 |
-|                |                                 |                       |
+|        neyroud2        |         Trying different databases                       |          Implement databases and task 1             |
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
@@ -128,14 +129,15 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 </br>
 Members present: List the NetID of the people who attended the meeting
 </br>
-Meeting notes: Explain the overall team progress and a summary of discussion
+Meeting notes: 
+Went over progress and how to better work on task 1 and 3 together given how they are interconnected. Planned fro due dates of different tasks to ensure being done by the milestone
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
 |hanqim2         |   Finish task 1 and 2           | read through milestone4 and implement some function|
 |rudyjin2        |   Debugged and fixed the low level logic; integrated different components together | Prepare for Milestone 4 |
 |sahansy2        | Debugged issues with two themes | Prep for Milestone 4  |
-|                |                                 |                       |
+|         neyroud2       |     Implemented firestore database                            |    finish up milestone 1                   |
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
