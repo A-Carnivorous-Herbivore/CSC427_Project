@@ -114,7 +114,7 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
 | hanqim2        |   Try on different database     | Make it work and do task 1 and 2|
-|                |                                 |                       |
+| rudyjin2       |  Started with Theme Design for Task 3; tested out different themes  |The integration of All Parts  |
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
@@ -133,7 +133,7 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
 |hanqim2         |   Finish task 1 and 2           | read through milestone4 and implement some function|
-|                |                                 |                       |
+|rudyjin2        |   Debugged and fixed the low level logic; integrated different components together | Prepare for Milestone 4 |
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
