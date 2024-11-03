@@ -115,7 +115,7 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 | ---------------| --------------------------------| ----------------------|
 | hanqim2        |   Try on different database     | Make it work and do task 1 and 2|
 | rudyjin2       |  Started with Theme Design for Task 3; tested out different themes  |The integration of All Parts  |
-|                |                                 |                       |
+| sahansy2       |  Worked with Rudy on "Started with Theme Design for Task 3; tested out different themes" | Continue to work on issues with theme for Task 3 |
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
@@ -134,7 +134,7 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 | ---------------| --------------------------------| ----------------------|
 |hanqim2         |   Finish task 1 and 2           | read through milestone4 and implement some function|
 |rudyjin2        |   Debugged and fixed the low level logic; integrated different components together | Prepare for Milestone 4 |
-|                |                                 |                       |
+|sahansy2        | Debugged issues with two themes | Prep for Milestone 4  |
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
