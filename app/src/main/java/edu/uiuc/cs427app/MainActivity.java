@@ -205,22 +205,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         showDetailsButton.setBackgroundResource(R.drawable.rounded_button);
         showDetailsButton.setOnClickListener(v -> openCityDetails(cityName));
 
-        // Set layout parameters with margin to add space between buttons
+        // Remove Button
+        Button removeButton = new Button(this);
+        removeButton.setText("Remove");
+        removeButton.setBackgroundResource(R.drawable.rounded_button);
+        removeButton.setOnClickListener(v -> {
+            removeCityFromDatabase(cityName);
+            locationsContainer.removeView(cityLayout);
+        });
+
+        // Set layout parameters with margin for each button
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        buttonParams.setMargins(0, 8, 0, 8); // Adjust the margins as needed (top and bottom for vertical spacing)
-        showDetailsButton.setLayoutParams(buttonParams);
-//        showDetailsButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.purple_500));
-//        showDetailsButton.setTextColor(ContextCompat.getColor(this, android.R.color.white));
+        buttonParams.setMargins(0, 8, 0, 8); // Adjust the margins as needed
 
+        showDetailsButton.setLayoutParams(buttonParams);
+        removeButton.setLayoutParams(buttonParams);
 
         cityLayout.addView(cityTextView);
         cityLayout.addView(showDetailsButton);
+        cityLayout.addView(removeButton);
 
         locationsContainer.addView(cityLayout);
     }
+
+    private void removeCityFromDatabase(String cityName) {
+        String username = getIntent().getStringExtra("username");
+
+        db.collection("users")
+                .whereEqualTo("username", username)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        String documentId = queryDocumentSnapshots.getDocuments().get(0).getId();
+
+                        db.collection("users").document(documentId)
+                                .update("locations", FieldValue.arrayRemove(cityName))
+                                .addOnSuccessListener(aVoid ->
+                                        Toast.makeText(MainActivity.this, "City removed successfully", Toast.LENGTH_SHORT).show())
+                                .addOnFailureListener(e ->
+                                        Toast.makeText(MainActivity.this, "Failed to remove city: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                    } else {
+                        Toast.makeText(MainActivity.this, "User not found", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(MainActivity.this, "Failed to find user: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+    }
+
 
     private void openCityDetails(String cityName) {
         Intent intent = new Intent(this, DetailsActivity.class);
