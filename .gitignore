@@ -1,5 +1,5 @@
 .gradle/
 *.lock
 *.bin
-
+local.properties
 .idea/libraries/
