@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.View;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.ui.AppBarConfiguration;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -200,7 +202,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button showDetailsButton = new Button(this);
         showDetailsButton.setText("Show Details");
+        showDetailsButton.setBackgroundResource(R.drawable.rounded_button);
         showDetailsButton.setOnClickListener(v -> openCityDetails(cityName));
+
+        // Set layout parameters with margin to add space between buttons
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        buttonParams.setMargins(0, 8, 0, 8); // Adjust the margins as needed (top and bottom for vertical spacing)
+        showDetailsButton.setLayoutParams(buttonParams);
+//        showDetailsButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.purple_500));
+//        showDetailsButton.setTextColor(ContextCompat.getColor(this, android.R.color.white));
+
 
         cityLayout.addView(cityTextView);
         cityLayout.addView(showDetailsButton);
