@@ -119,7 +119,7 @@ Discussed progress and the bottlenecks of learning android as well as implementi
 | sahansy2       |  Worked with Rudy on "Started with Theme Design for Task 3; tested out different themes" | Continue to work on issues with theme for Task 3 |
 |        neyroud2        |         Trying different databases                       |          Implement databases and task 1             |
 |      ryblake2  | Looked into displaying cities on ui fetched from database             |  Implement dynamic display in ui  |
-|                |                                 |                       |
+|        hodaa2  | Went over the ML3 requirements with the team, setup the needed meetings for touch base | Working on task3 for adding widgets to the main activity page|
 |                |                                 |                       |
 |                |                                 |                       |
 </br>
@@ -139,7 +139,7 @@ Went over progress and how to better work on task 1 and 3 together given how the
 |sahansy2        | Debugged issues with two themes | Prep for Milestone 4  |
 |         neyroud2       |     Implemented firestore database                            |    finish up milestone 1                   |
 | ryblake2 |       finished up task 2 with city display        |    prepare for milestone 4  |
-|                |                                 |                       |
+|       hodaa2  |   Added a toggle switch to the main activity page to switch between the light and dark modes|  Prep for Milestone 4 |
 |                |                                 |                       |
 |                |                                 |                       |
 </br>
