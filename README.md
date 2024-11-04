@@ -121,7 +121,7 @@ Discussed progress and the bottlenecks of learning android as well as implementi
 |      ryblake2  | Looked into displaying cities on ui fetched from database             |  Implement dynamic display in ui  |
 |        hodaa2  | Went over the ML3 requirements with the team, setup the needed meetings for touch base | Working on task3 for adding widgets to the main activity page|
 |  prithvi7      | Looked into creating button designs for better UI | Implement new button designs |
-|                |                                 |                       |
+|      bw38      |   Reviewed ML3 requirements to begin UI design for Task 3      |  Continue working to enhance UI and customization for different users  |
 </br>
 
 
@@ -141,7 +141,7 @@ Went over progress and how to better work on task 1 and 3 together given how the
 | ryblake2 |       finished up task 2 with city display        |    prepare for milestone 4  |
 |       hodaa2  |   Added a toggle switch to the main activity page to switch between the light and dark modes|  Prep for Milestone 4 |
 |prithvi7                |Added button designs and helped debug other issues with codebase | Prepare for Milestone 4                       |
-|                |                                 |                       |
+|  bw38         |  Fixed issue w/ theme not applying to details page, added back button & error message   | Prepare for ML4  |
 </br>
 
 
