@@ -8,4 +8,7 @@
         <item>Blue</item>
         <item>Sunshine</item>
     </string-array>
+
+    <!-- Google Maps API Key -->
+    <string name="google_maps_key">API_KEY</string>
 </resources>
