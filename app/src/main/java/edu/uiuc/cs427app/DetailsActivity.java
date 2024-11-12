@@ -1,6 +1,5 @@
 package edu.uiuc.cs427app;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,10 +54,10 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         String apiKey = getString(R.string.openweather_api_key);
 
         WeatherApiService apiService = RetrofitClient.getClient().create(WeatherApiService.class);
-        Call<WeatherResponse> call = apiService.getWeatherDetails(cityName, apiKey, "metric");  // "metric" for Celsius, use "imperial" for Fahrenheit
+        String units = "metric"; // "metric" for Celsius, use "imperial" for Fahrenheit, we can change between the 2
+        Call<WeatherResponse> call = apiService.getWeatherDetails(cityName, apiKey, units);
 
         call.enqueue(new Callback<WeatherResponse>() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
 
@@ -69,12 +68,21 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                         String date = Instant.ofEpochSecond(timeStamp)
                                 .atZone(ZoneId.systemDefault())
                                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm:ss"));
-                        cityNameTextView.setText("Welcome to " + weatherResponse.getName());
-                        timeTextView.setText("Date and time: " + date);
-                        temperatureTextView.setText(String.valueOf(weatherResponse.getMain().getTemp()) + "°C");
-                        humidityTextView.setText("Humidity: " + weatherResponse.getMain().getHumidity() + "%");
-                        descriptionTextView.setText("Weather: " + weatherResponse.getWeather()[0].getDescription());
-                        windConditionTextView.setText("Wind condition: speed = " + weatherResponse.getWind().getSpeed() + "m/s, degree = " + weatherResponse.getWind().getDeg() + " (wind direction)");
+                        String cityNameText = weatherResponse.getName() + " Weather Details";
+                        String dateText = "Date and time: " + date;
+                        String tempUnit = units.equals("metric") ? "°C" : "°F";
+                        String tempText = "Temperature: " + String.valueOf(weatherResponse.getMain().getTemp()) + tempUnit;
+                        String humidityText = "Humidity: " + weatherResponse.getMain().getHumidity() + "%";
+                        String descriptionText = "Weather: " + weatherResponse.getWeather()[0].getDescription();
+                        String windConditionUnits = units.equals("metric") ? "m/s" : "mph";
+                        String windConditionText = "Wind condition: speed = " + weatherResponse.getWind().getSpeed() + windConditionUnits +  ", degree = " + weatherResponse.getWind().getDeg() + " (wind direction)";
+
+                        cityNameTextView.setText(cityNameText);
+                        timeTextView.setText(dateText);
+                        temperatureTextView.setText(tempText);
+                        humidityTextView.setText(humidityText);
+                        descriptionTextView.setText(descriptionText);
+                        windConditionTextView.setText(windConditionText);
                     }
                 } else {
                     Toast.makeText(DetailsActivity.this, "Failed to retrieve weather data", Toast.LENGTH_SHORT).show();
