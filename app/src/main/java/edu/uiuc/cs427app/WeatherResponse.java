@@ -6,6 +6,8 @@ public class WeatherResponse {
     private String name;
     private Wind wind;
 
+    private long dt;
+
     public Main getMain() {
         return main;
     }
@@ -28,6 +30,14 @@ public class WeatherResponse {
 
     public void setWind(Wind wind) { // Add setter for wind
         this.wind = wind;
+    }
+
+    public long getDt() { // Add getter for time
+        return dt;
+    }
+
+    public void setDt(long dt) { // Add setter for time
+        this.dt = dt;
     }
 
     public String getName() {

@@ -21,6 +21,10 @@ import retrofit2.Response;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener{
 
 //    private TextView cityNameTextView;
@@ -38,10 +42,13 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
         // Initializing the GUI elements
         TextView cityNameTextView = findViewById(R.id.cityName);
+        TextView timeTextView = findViewById(R.id.time);
         TextView temperatureTextView = findViewById(R.id.temperature);
         TextView humidityTextView = findViewById(R.id.humidity);
         TextView descriptionTextView = findViewById(R.id.description);
         TextView windConditionTextView = findViewById(R.id.windCondition);
+
+
 
         // Process the Intent payload that has opened this Activity and show the information accordingly
         String cityName = getIntent().getStringExtra("city");
@@ -54,10 +61,16 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
+
                 if (response.isSuccessful()) {
                     WeatherResponse weatherResponse = response.body();
                     if (weatherResponse != null) {
+                        long timeStamp = weatherResponse.getDt();
+                        String date = Instant.ofEpochSecond(timeStamp)
+                                .atZone(ZoneId.systemDefault())
+                                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm:ss"));
                         cityNameTextView.setText("Welcome to " + weatherResponse.getName());
+                        timeTextView.setText("Date and time: " + date);
                         temperatureTextView.setText(String.valueOf(weatherResponse.getMain().getTemp()) + "°C");
                         humidityTextView.setText("Humidity: " + weatherResponse.getMain().getHumidity() + "%");
                         descriptionTextView.setText("Weather: " + weatherResponse.getWeather()[0].getDescription());
