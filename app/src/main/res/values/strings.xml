@@ -8,4 +8,5 @@
         <item>Blue</item>
         <item>Sunshine</item>
     </string-array>
+    <string name="openweather_api_key">a2e95f9b364fbeec2ddc6f3d159dafb7</string>
 </resources>

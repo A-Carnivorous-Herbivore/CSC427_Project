@@ -31,10 +31,14 @@ import com.google.firebase.firestore.FieldValue;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class
@@ -45,6 +49,9 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseFirestore db;
     private ActivityResultLauncher<Intent> personalizeLayoutLauncher;
     private LinearLayout locationsContainer;
+
+    private final String WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/";
+    private String API_KEY;
     /*
     This on create instantiates the main activity, especially with regard to applying the theme and connecting to the
     database in order to display the users city list
@@ -109,16 +116,12 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
         Button buttonLogOut = findViewById(R.id.buttonLogout);
         Button buttonPersonalizeLayout = findViewById(R.id.buttonPersonalizeLayout); // layout
 
-//        buttonChampaign.setOnClickListener(this);
-//        buttonChicago.setOnClickListener(this);
-//        buttonLA.setOnClickListener(this);
         buttonNew.setOnClickListener(this);
         buttonLogOut.setOnClickListener((v -> logOut()));
 
         buttonPersonalizeLayout.setOnClickListener(this);
 
-
-
+        API_KEY = getString(R.string.openweather_api_key);
 
     }
     /*
@@ -336,6 +339,43 @@ openCityDetails opens the details activity for a given city
         intent.putExtra("city", cityName);
         startActivity(intent);
     }
+
+    /*
+    fetchWeatherData fetches the details from the api and displays them
+     */
+    private void fetchWeatherData(String cityName) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(WEATHER_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        WeatherApiService weatherApi = retrofit.create(WeatherApiService.class);
+        Call<WeatherResponse> call = weatherApi.getWeatherDetails(cityName, API_KEY, "metric");
+
+        call.enqueue(new Callback<WeatherResponse>() {
+            @Override
+            public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
+                if (response.isSuccessful()) {
+                    WeatherResponse weatherResponse = response.body();
+                    if (weatherResponse != null) {
+                        String weatherDescription = weatherResponse.getWeather()[0].getDescription();
+                        double temperature = weatherResponse.getMain().getTemp() - 273.15; // Convert from Kelvin to Celsius
+                        String tempString = String.format("%.2f °C", temperature);
+                        Toast.makeText(MainActivity.this, "Weather: " + weatherDescription + " - " + tempString, Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Failed to fetch weather data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WeatherResponse> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
     /*
     The log out button clears the context and navigates back to the auth activity page for another user to signup/login
      */
