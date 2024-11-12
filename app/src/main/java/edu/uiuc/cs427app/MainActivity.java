@@ -270,7 +270,7 @@ allow the user to remove items from the list or enter the details of a specific 
         cityTextView.setText(cityName);
 
         Button showDetailsButton = new Button(this);
-        showDetailsButton.setText("Show Details");
+        showDetailsButton.setText("Weather");
         showDetailsButton.setBackgroundResource(R.drawable.rounded_button);
         showDetailsButton.setOnClickListener(v -> openCityDetails(cityName));
 
