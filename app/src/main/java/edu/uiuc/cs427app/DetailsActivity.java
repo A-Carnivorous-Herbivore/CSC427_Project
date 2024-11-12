@@ -74,7 +74,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                         temperatureTextView.setText(String.valueOf(weatherResponse.getMain().getTemp()) + "°C");
                         humidityTextView.setText("Humidity: " + weatherResponse.getMain().getHumidity() + "%");
                         descriptionTextView.setText("Weather: " + weatherResponse.getWeather()[0].getDescription());
-                        windConditionTextView.setText("Wind condition: speed = " + weatherResponse.getWind().getSpeed() + ", degree = " + weatherResponse.getWind().getDeg());
+                        windConditionTextView.setText("Wind condition: speed = " + weatherResponse.getWind().getSpeed() + "m/s, degree = " + weatherResponse.getWind().getDeg() + " (wind direction)");
                     }
                 } else {
                     Toast.makeText(DetailsActivity.this, "Failed to retrieve weather data", Toast.LENGTH_SHORT).show();
