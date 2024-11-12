@@ -57,7 +57,12 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         String units = "metric"; // "metric" for Celsius, use "imperial" for Fahrenheit, we can change between the 2
         Call<WeatherResponse> call = apiService.getWeatherDetails(cityName, apiKey, units);
 
+        // Asynchronously enqueueing the network call
         call.enqueue(new Callback<WeatherResponse>() {
+            /*
+             * Callback method called when a network response is received successfully.
+             * It parses and displays the weather data in the UI.
+             */
             @Override
             public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
 
@@ -89,6 +94,10 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 }
             }
 
+            /*
+             * Callback method called when a network request fails.
+             * Displays an error message to the user.
+             */
             @Override
             public void onFailure(Call<WeatherResponse> call, Throwable t) {
                 Toast.makeText(DetailsActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();

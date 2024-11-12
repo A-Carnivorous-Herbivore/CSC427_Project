@@ -50,8 +50,6 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityResultLauncher<Intent> personalizeLayoutLauncher;
     private LinearLayout locationsContainer;
 
-    private final String WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/";
-    private String API_KEY;
     /*
     This on create instantiates the main activity, especially with regard to applying the theme and connecting to the
     database in order to display the users city list
@@ -105,12 +103,6 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
             // Fallback to the default app name if not found
 //            getSupportActionBar().setTitle(R.string.app_name);
         }
-        // Initializing the UI components
-        // The list of locations should be customized per user (change the implementation so that
-        // buttons are added to layout programmatically
-//        Button buttonChampaign = findViewById(R.id.buttonChampaign);
-//        Button buttonChicago = findViewById(R.id.buttonChicago);
-//        Button buttonLA = findViewById(R.id.buttonLA);
         fetchAndDisplayCities();
         Button buttonNew = findViewById(R.id.buttonAddLocation);
         Button buttonLogOut = findViewById(R.id.buttonLogout);
@@ -120,8 +112,6 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
         buttonLogOut.setOnClickListener((v -> logOut()));
 
         buttonPersonalizeLayout.setOnClickListener(this);
-
-        API_KEY = getString(R.string.openweather_api_key);
 
     }
     /*
@@ -185,6 +175,11 @@ This function displays whether a city was added succesfully or not to the city l
                 .setMessage("Enter the name of the city:")
                 .setView(cityInput)
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    /**
+                     * Handles the click event for the dialog's positive button.
+                     * Validates the user-entered city name, checks if it exists in the predefined list of cities,
+                     * and either adds the city to the database or shows an appropriate error message.
+                     */
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String cityName = cityInput.getText().toString().trim();
@@ -206,8 +201,8 @@ This function displays whether a city was added succesfully or not to the city l
                 .show();
     }
     /*
-    This function adds the city to the users city list by querying the database, retunring an error message if it is
-    not succesful
+    This function adds the city to the users city list by querying the database, returning an error message if it is
+    not successful
      */
     private void addCityToDatabase(String cityName) {
         // Query the `users` collection to find the document with the matching username field
@@ -338,41 +333,6 @@ openCityDetails opens the details activity for a given city
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("city", cityName);
         startActivity(intent);
-    }
-
-    /*
-    fetchWeatherData fetches the details from the api and displays them
-     */
-    private void fetchWeatherData(String cityName) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(WEATHER_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        WeatherApiService weatherApi = retrofit.create(WeatherApiService.class);
-        Call<WeatherResponse> call = weatherApi.getWeatherDetails(cityName, API_KEY, "metric");
-
-        call.enqueue(new Callback<WeatherResponse>() {
-            @Override
-            public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
-                if (response.isSuccessful()) {
-                    WeatherResponse weatherResponse = response.body();
-                    if (weatherResponse != null) {
-                        String weatherDescription = weatherResponse.getWeather()[0].getDescription();
-                        double temperature = weatherResponse.getMain().getTemp() - 273.15; // Convert from Kelvin to Celsius
-                        String tempString = String.format("%.2f °C", temperature);
-                        Toast.makeText(MainActivity.this, "Weather: " + weatherDescription + " - " + tempString, Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    Toast.makeText(MainActivity.this, "Failed to fetch weather data", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<WeatherResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 
