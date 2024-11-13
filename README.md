@@ -168,15 +168,16 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 </br>
 Members present: List the NetID of the people who attended the meeting
 </br>
-Meeting notes: Explain the overall team progress and a summary of discussion
+Meeting notes: The team is progressing smoothly, having learned a lot of lessons from teh last milestone. Since the tasks are a lot more sequential, 
+the map is doen and now the LLM interaction needs to be created. We planned to meet on friday to finalize everything
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
+|  neyroud2   |      Ready to iterate over LLM     |   Implement LLM for merge on friday  |
+|   hanqim2       |            finalized task              |     awaiting merge on friday     |
+|         hodaa2       |    finalized task                |       awaiting merge on friday   |
+|        sahansy2        |        finished functional aspect           |    getting ready to merge and iron out bugds in git and app     |
+|prithvi7|       Ready to iterate over LLM; researched possible avenues                |     Implement LLM for merge on friday      |
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
