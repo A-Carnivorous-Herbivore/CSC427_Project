@@ -85,10 +85,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                         String windConditionUnits = units.equals("metric") ? "m/s" : "mph";
                         String windConditionText = "Wind condition: speed = " + weatherResponse.getWind().getSpeed() + windConditionUnits +  ", degree = " + weatherResponse.getWind().getDeg() + " (wind direction)";
                         String inputPrompt = "We have such information about " + cityNameText + ": " + tempText + " " + humidityText + " " + descriptionText + " " + windConditionText + ".";
-                        inputPrompt += " Keep your suggestions concise in about 50 words.";
-                        String LLMText = "Pending...";
-// Use the LLM class with the callback
-                        String LLMResponse = "";
+                        inputPrompt += " Keep your suggestions concise in about 50 words; keep the focus on insights instead of repeating the provided informations. ";
+                        inputPrompt += "Make sure to alert the users if any weather requires additional equipments, such as rainy day needs unbrella.";
                         LLM.LLMAdvice(inputPrompt, new LLM.LLMResponseCallback() {
                             @Override
                             public void onSuccess(String response) {
@@ -119,7 +117,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                         humidityTextView.setText(humidityText);
                         descriptionTextView.setText(descriptionText);
                         windConditionTextView.setText(windConditionText);
-                        LLMTextView.setText(LLMText);
 
                     }
                 } else {
