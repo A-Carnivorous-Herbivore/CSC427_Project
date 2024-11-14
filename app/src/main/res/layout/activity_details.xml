@@ -57,6 +57,12 @@
             android:layout_height="wrap_content"
             android:text="Wind Condition"
             android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/llmview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weather Insight"
+            android:textSize="18sp"/>
 
         <Button
             android:id="@+id/mapButton"

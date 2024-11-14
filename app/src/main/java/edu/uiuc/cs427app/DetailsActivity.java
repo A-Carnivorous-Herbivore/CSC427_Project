@@ -1,8 +1,8 @@
 package edu.uiuc.cs427app;
 
 import static edu.uiuc.cs427app.LLM.LLMAdvice;
-
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -48,7 +48,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         TextView humidityTextView = findViewById(R.id.humidity);
         TextView descriptionTextView = findViewById(R.id.description);
         TextView windConditionTextView = findViewById(R.id.windCondition);
-        // TextView LLMTextView = findViewById(R.id.LLM);
+        TextView LLMTextView = findViewById(R.id.llmview);
 
 
 
@@ -85,9 +85,33 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                         String windConditionUnits = units.equals("metric") ? "m/s" : "mph";
                         String windConditionText = "Wind condition: speed = " + weatherResponse.getWind().getSpeed() + windConditionUnits +  ", degree = " + weatherResponse.getWind().getDeg() + " (wind direction)";
                         String inputPrompt = "We have such information about " + cityNameText + ": " + tempText + " " + humidityText + " " + descriptionText + " " + windConditionText + ".";
-                        inputPrompt += "Keep your suggestions concise in about 50 words.";
-                        String LLMText = LLMAdvice(inputPrompt);
+                        inputPrompt += " Keep your suggestions concise in about 50 words.";
+                        String LLMText = "Pending...";
+// Use the LLM class with the callback
+                        String LLMResponse = "";
+                        LLM.LLMAdvice(inputPrompt, new LLM.LLMResponseCallback() {
+                            @Override
+                            public void onSuccess(String response) {
+                                runOnUiThread(() -> {
+                                    LLMTextView.setText(response);
+                                    Log.d("LLMText", response);
+                                });
 
+
+
+                                // Update UI or take action with the response
+                                // Example: textView.setText(LLMText);
+                            }
+
+                            @Override
+                            public void onFailure(String error) {
+                                // Handle the error here
+                                Log.e("LLMError", error);
+
+                                // Optionally show an error message to the user
+                                // Example: Toast.makeText(context, "Error fetching LLM response", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
                         cityNameTextView.setText(cityNameText);
                         timeTextView.setText(dateText);
@@ -95,7 +119,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                         humidityTextView.setText(humidityText);
                         descriptionTextView.setText(descriptionText);
                         windConditionTextView.setText(windConditionText);
-                        // LLMTextView.setText(LLMText);
+                        LLMTextView.setText(LLMText);
+
                     }
                 } else {
                     Toast.makeText(DetailsActivity.this, "Failed to retrieve weather data", Toast.LENGTH_SHORT).show();
