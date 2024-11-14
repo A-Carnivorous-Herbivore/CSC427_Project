@@ -1,5 +1,7 @@
 package edu.uiuc.cs427app;
 
+import static edu.uiuc.cs427app.LLM.LLMAdvice;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +48,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         TextView humidityTextView = findViewById(R.id.humidity);
         TextView descriptionTextView = findViewById(R.id.description);
         TextView windConditionTextView = findViewById(R.id.windCondition);
+        // TextView LLMTextView = findViewById(R.id.LLM);
 
 
 
@@ -81,6 +84,10 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                         String descriptionText = "Weather: " + weatherResponse.getWeather()[0].getDescription();
                         String windConditionUnits = units.equals("metric") ? "m/s" : "mph";
                         String windConditionText = "Wind condition: speed = " + weatherResponse.getWind().getSpeed() + windConditionUnits +  ", degree = " + weatherResponse.getWind().getDeg() + " (wind direction)";
+                        String inputPrompt = "We have such information about " + cityNameText + ": " + tempText + " " + humidityText + " " + descriptionText + " " + windConditionText + ".";
+                        inputPrompt += "Keep your suggestions concise in about 50 words.";
+                        String LLMText = LLMAdvice(inputPrompt);
+
 
                         cityNameTextView.setText(cityNameText);
                         timeTextView.setText(dateText);
@@ -88,6 +95,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                         humidityTextView.setText(humidityText);
                         descriptionTextView.setText(descriptionText);
                         windConditionTextView.setText(windConditionText);
+                        // LLMTextView.setText(LLMText);
                     }
                 } else {
                     Toast.makeText(DetailsActivity.this, "Failed to retrieve weather data", Toast.LENGTH_SHORT).show();
