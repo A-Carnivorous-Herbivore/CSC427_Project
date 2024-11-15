@@ -1,24 +1,12 @@
 package edu.uiuc.cs427app;
 
-import static edu.uiuc.cs427app.LLM.LLMAdvice;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,16 +14,14 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-public class DetailsActivity extends AppCompatActivity implements View.OnClickListener{
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-//    private TextView cityNameTextView;
-//    private TextView temperatureTextView;
-//    private TextView humidityTextView;
-//    private TextView descriptionTextView;
-    /*
-    This onCreate instantiates the details when the user hits the details button
-    right now it is a skeleton while we implement the map display
-     */
+public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "DetailsActivity";
+    private String inputPrompt; // Stores the generated input prompt for use in WeatherInsightActivity
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,27 +34,19 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         TextView humidityTextView = findViewById(R.id.humidity);
         TextView descriptionTextView = findViewById(R.id.description);
         TextView windConditionTextView = findViewById(R.id.windCondition);
-        TextView LLMTextView = findViewById(R.id.llmview);
 
-
-
-        // Process the Intent payload that has opened this Activity and show the information accordingly
+        // Process the Intent payload that opened this Activity and show the information accordingly
         String cityName = getIntent().getStringExtra("city");
         String apiKey = getString(R.string.openweather_api_key);
 
         WeatherApiService apiService = RetrofitClient.getClient().create(WeatherApiService.class);
-        String units = "metric"; // "metric" for Celsius, use "imperial" for Fahrenheit, we can change between the 2
+        String units = "metric"; // "metric" for Celsius, use "imperial" for Fahrenheit
         Call<WeatherResponse> call = apiService.getWeatherDetails(cityName, apiKey, units);
 
         // Asynchronously enqueueing the network call
         call.enqueue(new Callback<WeatherResponse>() {
-            /*
-             * Callback method called when a network response is received successfully.
-             * It parses and displays the weather data in the UI.
-             */
             @Override
             public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
-
                 if (response.isSuccessful()) {
                     WeatherResponse weatherResponse = response.body();
                     if (weatherResponse != null) {
@@ -79,71 +57,53 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                         String cityNameText = weatherResponse.getName() + " Weather Details";
                         String dateText = "Date and time: " + date;
                         String tempUnit = units.equals("metric") ? "°C" : "°F";
-                        String tempText = "Temperature: " + String.valueOf(weatherResponse.getMain().getTemp()) + tempUnit;
+                        String tempText = "Temperature: " + weatherResponse.getMain().getTemp() + tempUnit;
                         String humidityText = "Humidity: " + weatherResponse.getMain().getHumidity() + "%";
                         String descriptionText = "Weather: " + weatherResponse.getWeather()[0].getDescription();
                         String windConditionUnits = units.equals("metric") ? "m/s" : "mph";
-                        String windConditionText = "Wind condition: speed = " + weatherResponse.getWind().getSpeed() + windConditionUnits +  ", degree = " + weatherResponse.getWind().getDeg() + " (wind direction)";
-                        String inputPrompt = "We have such information about " + cityNameText + ": " + tempText + " " + humidityText + " " + descriptionText + " " + windConditionText + ".";
-                        inputPrompt += " Keep your suggestions concise in about 50 words; keep the focus on insights instead of repeating the provided informations. ";
-                        inputPrompt += "Make sure to alert the users if any weather requires additional equipments, such as rainy day needs unbrella.";
-                        LLM.LLMAdvice(inputPrompt, new LLM.LLMResponseCallback() {
-                            @Override
-                            public void onSuccess(String response) {
-                                runOnUiThread(() -> {
-                                    LLMTextView.setText(response);
-                                    Log.d("LLMText", response);
-                                });
+                        String windConditionText = "Wind condition: speed = " + weatherResponse.getWind().getSpeed() + windConditionUnits +
+                                ", degree = " + weatherResponse.getWind().getDeg() + " (wind direction)";
+                        inputPrompt = "We have such information about " + cityNameText + ": " + tempText + " " + humidityText + " " +
+                                descriptionText + " " + windConditionText + ".";
 
-
-
-                                // Update UI or take action with the response
-                                // Example: textView.setText(LLMText);
-                            }
-
-                            @Override
-                            public void onFailure(String error) {
-                                // Handle the error here
-                                Log.e("LLMError", error);
-
-                                // Optionally show an error message to the user
-                                // Example: Toast.makeText(context, "Error fetching LLM response", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
+                        // Update UI elements
                         cityNameTextView.setText(cityNameText);
                         timeTextView.setText(dateText);
                         temperatureTextView.setText(tempText);
                         humidityTextView.setText(humidityText);
                         descriptionTextView.setText(descriptionText);
                         windConditionTextView.setText(windConditionText);
-
                     }
                 } else {
                     Toast.makeText(DetailsActivity.this, "Failed to retrieve weather data", Toast.LENGTH_SHORT).show();
                 }
             }
 
-            /*
-             * Callback method called when a network request fails.
-             * Displays an error message to the user.
-             */
             @Override
             public void onFailure(Call<WeatherResponse> call, Throwable t) {
+                Log.e(TAG, "Failed to fetch weather data", t);
                 Toast.makeText(DetailsActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Get the weather information from a Service that connects to a weather server and show the results
-
+        // Setting click listeners for buttons
+        Button insightButton = findViewById(R.id.insightButton);
+        insightButton.setOnClickListener(this);
         Button buttonMap = findViewById(R.id.mapButton);
         buttonMap.setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View view) {
-        //Implement this (create an Intent that goes to a new Activity, which shows the map)
+        int id = view.getId();
+        if (id == R.id.insightButton) {
+            // Navigate to WeatherInsightActivity with the inputPrompt
+            Intent intent = new Intent(DetailsActivity.this, WeatherInsightActivity.class);
+            intent.putExtra("inputPrompt", inputPrompt);
+            startActivity(intent);
+        } else if (id == R.id.mapButton) {
+            // Navigate to map activity (to be implemented)
+            Toast.makeText(this, "Map functionality is not yet implemented.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
-
