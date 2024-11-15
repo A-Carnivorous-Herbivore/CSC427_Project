@@ -14,15 +14,54 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
-        <TextView
-            android:id="@+id/welcomeText"
-            android:layout_width="match_parent"
-            android:layout_height="58dp" />
 
         <TextView
-            android:id="@+id/cityInfo"
+            android:id="@+id/cityName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City Name"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temperature"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Humidity"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/windCondition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wind Condition"
+            android:textSize="18sp"/>
+        <Button
+            android:id="@+id/insightButton"
             android:layout_width="match_parent"
-            android:layout_height="268dp" />
+            android:layout_height="wrap_content"
+            android:text="Weather Insights" />
 
         <Button
             android:id="@+id/mapButton"

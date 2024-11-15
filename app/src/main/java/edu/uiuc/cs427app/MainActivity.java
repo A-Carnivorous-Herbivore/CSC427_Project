@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import androidx.core.content.ContextCompat;
+
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -25,7 +28,17 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FieldValue;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class
@@ -36,6 +49,7 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseFirestore db;
     private ActivityResultLauncher<Intent> personalizeLayoutLauncher;
     private LinearLayout locationsContainer;
+
     /*
     This on create instantiates the main activity, especially with regard to applying the theme and connecting to the
     database in order to display the users city list
@@ -89,27 +103,15 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
             // Fallback to the default app name if not found
 //            getSupportActionBar().setTitle(R.string.app_name);
         }
-        // Initializing the UI components
-        // The list of locations should be customized per user (change the implementation so that
-        // buttons are added to layout programmatically
-//        Button buttonChampaign = findViewById(R.id.buttonChampaign);
-//        Button buttonChicago = findViewById(R.id.buttonChicago);
-//        Button buttonLA = findViewById(R.id.buttonLA);
         fetchAndDisplayCities();
         Button buttonNew = findViewById(R.id.buttonAddLocation);
         Button buttonLogOut = findViewById(R.id.buttonLogout);
         Button buttonPersonalizeLayout = findViewById(R.id.buttonPersonalizeLayout); // layout
 
-//        buttonChampaign.setOnClickListener(this);
-//        buttonChicago.setOnClickListener(this);
-//        buttonLA.setOnClickListener(this);
         buttonNew.setOnClickListener(this);
         buttonLogOut.setOnClickListener((v -> logOut()));
 
         buttonPersonalizeLayout.setOnClickListener(this);
-
-
-
 
     }
     /*
@@ -158,9 +160,14 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
 This function displays whether a city was added succesfully or not to the city list.
  */
     private void showAddCityDialog() {
-        // Create an EditText to input the city name
-        final EditText cityInput = new EditText(this);
-        cityInput.setHint("Enter city name");
+        // Fetch the list of cities
+        List<String> cities = readCitiesFromCsv();
+
+        // Create an AutoCompleteTextView
+        AutoCompleteTextView cityInput = new AutoCompleteTextView(this);
+        cityInput.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, cities));
+        cityInput.setHint("Enter or select a city");
+
 
         // Build the dialog
         new AlertDialog.Builder(this)
@@ -168,12 +175,23 @@ This function displays whether a city was added succesfully or not to the city l
                 .setMessage("Enter the name of the city:")
                 .setView(cityInput)
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    /**
+                     * Handles the click event for the dialog's positive button.
+                     * Validates the user-entered city name, checks if it exists in the predefined list of cities,
+                     * and either adds the city to the database or shows an appropriate error message.
+                     */
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String cityName = cityInput.getText().toString().trim();
                         if (!cityName.isEmpty()) {
-                            addCityToDatabase(cityName);
-                            Toast.makeText(MainActivity.this, "City name "+cityName, Toast.LENGTH_SHORT).show();
+                            if (cities.contains(cityName)) {
+                                // Add city to database if it exists in the list
+                                addCityToDatabase(cityName);
+                                Toast.makeText(MainActivity.this, "City name " + cityName, Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Show error message if city is not in the list
+                                Toast.makeText(MainActivity.this, "City not found in the list. Please try again.", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             Toast.makeText(MainActivity.this, "City name cannot be empty", Toast.LENGTH_SHORT).show();
                         }
@@ -183,13 +201,13 @@ This function displays whether a city was added succesfully or not to the city l
                 .show();
     }
     /*
-    This function adds the city to the users city list by querying the database, retunring an error message if it is
-    not succesful
+    This function adds the city to the users city list by querying the database, returning an error message if it is
+    not successful
      */
     private void addCityToDatabase(String cityName) {
         // Query the `users` collection to find the document with the matching username field
         String username = getIntent().getStringExtra("username");
-        Toast.makeText(MainActivity.this, username+ "want to add city"+ cityName , Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, username+ " wants to add city "+ cityName , Toast.LENGTH_SHORT).show();
         db.collection("users")
                 .whereEqualTo("username", username)
                 .get()
@@ -316,6 +334,8 @@ openCityDetails opens the details activity for a given city
         intent.putExtra("city", cityName);
         startActivity(intent);
     }
+
+
     /*
     The log out button clears the context and navigates back to the auth activity page for another user to signup/login
      */
@@ -332,6 +352,28 @@ openCityDetails opens the details activity for a given city
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish(); // Finish MainActivity to remove it from the back stack
+    }
+
+/*
+This function parses through the cities_list.csv and gets the list of cities
+ */
+    private List<String> readCitiesFromCsv() {
+        List<String> cities = new ArrayList<>();
+        try {
+            InputStream inputStream = getAssets().open("cities_list.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length > 0) {
+                    cities.add(parts[0].trim()); // Add the city name, trimming any extra spaces
+                }
+            }
+            reader.close();
+        } catch (Exception e) {
+            Toast.makeText(this, "Error reading city list: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        return cities;
     }
 
 }

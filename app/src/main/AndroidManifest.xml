@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,6 +27,7 @@
         </activity>
         <activity android:name=".MainActivity" android:exported="true"></activity>
         <activity android:name=".DetailsActivity" android:exported="true"></activity>
+        <activity android:name=".WeatherInsightActivity" android:exported="true"></activity>
         <activity android:name=".PersonalizeLayoutActivity"></activity>
 
     </application>
