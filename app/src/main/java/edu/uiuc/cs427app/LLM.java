@@ -131,7 +131,7 @@ public class LLM {
             JSONObject partsObject = new JSONObject();
             partsObject.put("text", "Today's weather is: " + weatherPrompt +
                     ". Based on this, here is the question: " + question +
-                    ". Please generate a helpful and informative response to this question.");
+                    ". Please generate a helpful and informative response to this question. Mkae sure the response is no longer than 75 words.");
 
             JSONObject contentObject = new JSONObject();
             contentObject.put("parts", new JSONArray().put(partsObject));
