@@ -14,7 +14,6 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
-
         <TextView
             android:id="@+id/cityName"
             android:layout_width="wrap_content"
@@ -63,5 +62,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Show Map" />
+
+        <TextView
+            android:id="@+id/weatherSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weather data provided by OpenWeatherMap"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:layout_marginTop="16dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

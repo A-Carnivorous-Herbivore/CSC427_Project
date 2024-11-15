@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.view.MenuItem;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import retrofit2.Call;
@@ -36,8 +38,18 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        String themePreference = getIntent().getStringExtra("themePreference");
+        applyTheme(themePreference);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        applyTheme(themePreference);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         // Initializing the GUI elements
         TextView cityNameTextView = findViewById(R.id.cityName);
@@ -115,5 +127,40 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         //Implement this (create an Intent that goes to a new Activity, which shows the map)
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void applyTheme(String themePreference) {
+        if (themePreference != null) {
+            switch (themePreference) {
+                case "Default":
+                    setTheme(R.style.Theme_MyFirstApp_Default);
+                    break;
+                case "Dark":
+                    setTheme(R.style.Theme_MyFirstApp_DarkMode);
+                    break;
+                case "Light":
+                    setTheme(R.style.Theme_MyFirstApp_LightMode);
+                    break;
+                case "Blue":
+                    setTheme(R.style.Theme_MyFirstApp_BlueRidge);
+                    break;
+                default:
+                    setTheme(R.style.Theme_MyFirstApp_Default);
+                    break;
+            }
+        } else {
+            setTheme(R.style.Theme_MyFirstApp_Default); // Fallback to default if themePreference is null
+        }
+    }
+
 }
 

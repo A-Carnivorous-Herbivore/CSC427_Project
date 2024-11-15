@@ -331,7 +331,9 @@ openCityDetails opens the details activity for a given city
  */
     private void openCityDetails(String cityName) {
         Intent intent = new Intent(this, DetailsActivity.class);
+        String themePreference = getIntent().getStringExtra("themePreference");
         intent.putExtra("city", cityName);
+        intent.putExtra("themePreference", themePreference);
         startActivity(intent);
     }
 
