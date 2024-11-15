@@ -9,4 +9,8 @@
         <item>Sunshine</item>
     </string-array>
     <string name="openweather_api_key">a2e95f9b364fbeec2ddc6f3d159dafb7</string>
+
+
+    <!-- Google Maps API Key -->
+    <string name="google_maps_key">API_KEY</string>
 </resources>

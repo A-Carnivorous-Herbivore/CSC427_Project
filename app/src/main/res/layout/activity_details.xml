@@ -63,10 +63,14 @@
             android:layout_height="wrap_content"
             android:text="Weather Insights" />
 
+
         <Button
             android:id="@+id/mapButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Show Map" />
+
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

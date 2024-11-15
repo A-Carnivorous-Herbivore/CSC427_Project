@@ -156,9 +156,9 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-/*
-This function displays whether a city was added succesfully or not to the city list.
- */
+    /*
+    This function displays whether a city was added succesfully or not to the city list.
+     */
     private void showAddCityDialog() {
         // Fetch the list of cities
         List<String> cities = readCitiesFromCsv();
@@ -256,10 +256,10 @@ This function displays whether a city was added succesfully or not to the city l
                 .addOnFailureListener(e ->
                         Toast.makeText(MainActivity.this, "Failed to load cities: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
-/*
-This function handles getting the cities and displaying their name as well as the detail, and remove button. These buttons also
-allow the user to remove items from the list or enter the details of a specific city
- */
+    /*
+    This function handles getting the cities and displaying their name as well as the detail, and remove button. These buttons also
+    allow the user to remove items from the list or enter the details of a specific city
+     */
     private void addCityToUI(String cityName) {
         LinearLayout cityLayout = new LinearLayout(this);
         cityLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -272,7 +272,8 @@ allow the user to remove items from the list or enter the details of a specific 
         Button showDetailsButton = new Button(this);
         showDetailsButton.setText("Show Details");
         showDetailsButton.setBackgroundResource(R.drawable.rounded_button);
-        showDetailsButton.setOnClickListener(v -> openCityDetails(cityName));
+        String newtheme = getIntent().getStringExtra("themePreference");
+        showDetailsButton.setOnClickListener(v -> openCityDetails(cityName,newtheme));
 
         // Remove Button
         Button removeButton = new Button(this);
@@ -299,9 +300,9 @@ allow the user to remove items from the list or enter the details of a specific 
 
         locationsContainer.addView(cityLayout);
     }
-/*
-This function handles removing a specific city from the users saved city list
- */
+    /*
+    This function handles removing a specific city from the users saved city list
+     */
     private void removeCityFromDatabase(String cityName) {
         String username = getIntent().getStringExtra("username");
 
@@ -326,12 +327,13 @@ This function handles removing a specific city from the users saved city list
                         Toast.makeText(MainActivity.this, "Failed to find user: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
-/*
-openCityDetails opens the details activity for a given city
- */
-    private void openCityDetails(String cityName) {
+    /*
+    openCityDetails opens the details activity for a given city
+     */
+    private void openCityDetails(String cityName,String theme) {
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("city", cityName);
+        intent.putExtra("themePreference", theme);
         startActivity(intent);
     }
 
@@ -377,4 +379,3 @@ This function parses through the cities_list.csv and gets the list of cities
     }
 
 }
-

@@ -15,7 +15,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyFirstApp.Default"> <!--  This is where we hardcode change theme-->
+        android:theme="@style/Theme.MyFirstApp.Default">
+
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA7KfRWT1FZFMhLwU3lqqduz3OBzsMah7U" />
 
         <activity
             android:name=".AuthActivity"
@@ -29,6 +34,7 @@
         <activity android:name=".DetailsActivity" android:exported="true"></activity>
         <activity android:name=".WeatherInsightActivity" android:exported="true"></activity>
         <activity android:name=".PersonalizeLayoutActivity"></activity>
+        <activity android:name=".MapActivity"></activity>
 
     </application>
 
