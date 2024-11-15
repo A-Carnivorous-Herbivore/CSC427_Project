@@ -72,12 +72,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         String cityWeatherInfo = "Detailed information about the weather of " + cityName;
 
         // Initialize the GUI elements
-        TextView welcomeMessage = findViewById(R.id.welcomeText);
-        TextView cityInfoMessage = findViewById(R.id.cityInfo);
-        Button buttonMap = findViewById(R.id.mapButton);
 
-        welcomeMessage.setText(welcome);
-        cityInfoMessage.setText(cityWeatherInfo);
+
+
         WeatherApiService apiService = RetrofitClient.getClient().create(WeatherApiService.class);
         String units = "metric"; // "metric" for Celsius, use "imperial" for Fahrenheit
         Call<WeatherResponse> call = apiService.getWeatherDetails(cityName, apiKey, units);
