@@ -23,9 +23,9 @@ public class LLM {
         Log.d(TAG, "Starting generateQuestions method.");
 
         // Replace this with a secure method to retrieve the API key
-        final String apiKey = "AIzaSyAl2gTMR3f-7X1w9NFeJ2yiaUD11A7pFSw"; // Use a secure method in production
+        final String apiKey = "AIzaSyDZhpMxYtF9sO9nJVRUaSpg0xuFpg4IiuQ"; // Use a secure method in production
 
-        String endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
+        String endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-8b-latest:generateContent?key=" + apiKey;
 
         OkHttpClient client = new OkHttpClient();
 
@@ -118,9 +118,9 @@ public class LLM {
         Log.d(TAG, "Starting getResponseForQuestion method.");
 
         // Replace this with a secure method to retrieve the API key
-        final String apiKey = "AIzaSyAl2gTMR3f-7X1w9NFeJ2yiaUD11A7pFSw"; // Use a secure method in production
+        final String apiKey = "AIzaSyDZhpMxYtF9sO9nJVRUaSpg0xuFpg4IiuQ"; // Use a secure method in production
 
-        String endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
+        String endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-8b-latest:generateContent?key=" + apiKey;
 
         OkHttpClient client = new OkHttpClient();
 
