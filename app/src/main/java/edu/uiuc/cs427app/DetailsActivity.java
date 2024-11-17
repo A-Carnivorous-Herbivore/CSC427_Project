@@ -19,11 +19,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "DetailsActivity";
+    private static final String TAG = "DetailsActivity"; // Tag for error logging
     private String inputPrompt; // Stores the generated input prompt for use in WeatherInsightActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Apply theme that was selected previously
         String themePreference = getIntent().getStringExtra("themePreference");
 //        String themePreference = "Light";
         if (themePreference != null) {
@@ -51,6 +52,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             setTheme(R.style.Theme_MyFirstApp_Default); // Fallback to default if themePreference is null
         }
 
+        // Set layout for DetailsActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
@@ -72,12 +74,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         String cityWeatherInfo = "Detailed information about the weather of " + cityName;
 
         // Initialize the GUI elements
-
-
-
         WeatherApiService apiService = RetrofitClient.getClient().create(WeatherApiService.class);
         String units = "metric"; // "metric" for Celsius, use "imperial" for Fahrenheit
-        Call<WeatherResponse> call = apiService.getWeatherDetails(cityName, apiKey, units);
+        Call<WeatherResponse> call = apiService.getWeatherDetails(cityName, apiKey, units); // Request to fetch weather details
 
         // Asynchronously enqueueing the network call
         call.enqueue(new Callback<WeatherResponse>() {
@@ -117,7 +116,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onFailure(Call<WeatherResponse> call, Throwable t) {
-                Log.e(TAG, "Failed to fetch weather data", t);
+                Log.e(TAG, "Failed to fetch weather data", t); // Log failures
                 Toast.makeText(DetailsActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -166,6 +165,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 //        }
     }
 
+    // Opens map activity to display specified location on map
     private void openMapActivity(String cityName, double latitude, double longitude,String theme) {
         Intent intent = new Intent(this, MapActivity.class);
         intent.putExtra("cityName", cityName);
