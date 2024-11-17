@@ -165,7 +165,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 //        }
     }
 
-    // Opens map activity to display specified location on map
+    // openMapActivity function opens map activity to display specified location on map
     private void openMapActivity(String cityName, double latitude, double longitude,String theme) {
         Intent intent = new Intent(this, MapActivity.class);
         intent.putExtra("cityName", cityName);
