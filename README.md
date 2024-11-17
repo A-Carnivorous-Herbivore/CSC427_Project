@@ -178,7 +178,7 @@ the map is doen and now the LLM interaction needs to be created. We planned to m
 |         hodaa2       |    finalized task  (Implementation of the map feature)              |       awaiting merge on friday   |
 |        sahansy2        |        finished functional aspect           |    getting ready to merge and iron out bugds in git and app     |
 |prithvi7|       Ready to iterate over LLM; researched possible avenues                |     Implement LLM for merge on friday      |
-|                |                                 |                       |
+|   rudyjin2             |      Ready to iterate over LLM                  |          Integrate everything together for merge on Friday             |
 |                |                                 |                       |
 |                |                                 |                       |
 </br>
