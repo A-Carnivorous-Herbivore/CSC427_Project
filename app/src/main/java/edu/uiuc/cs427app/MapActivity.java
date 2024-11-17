@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-
+//This on create instantiates the MapActivity, especially with regard to applying the theme create map fragment for display
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -76,12 +76,13 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 //        mMap.addMarker(new MarkerOptions().position(cityLocation).title(cityName));
 //        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cityLocation, 10));
 //    }
+    // Here is where we create map and retrieve map using google api with the specific cityName passed from detailsActivity
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         if (cityName != null) {
-            // Use Geocoder to get the location by city name
+            // I think Use Geocoder to get the location by city name is more accurate
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             try {
                 List<Address> addresses = geocoder.getFromLocationName(cityName, 1);
