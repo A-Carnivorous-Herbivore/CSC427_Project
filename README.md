@@ -180,7 +180,7 @@ the map is doen and now the LLM interaction needs to be created. We planned to m
 |prithvi7|       Ready to iterate over LLM; researched possible avenues                |     Implement LLM for merge on friday      |
 |   rudyjin2             |      Ready to iterate over LLM                  |          Integrate everything together for merge on Friday             |
 | bw38 | Finalized weather screen implementation | Debug app and prepare for merge |
-|                |                                 |                       |
+|  ryblake2  |  Implemented weather details page w/ api  |  Finalize task and merge  |
 </br>
 
 
