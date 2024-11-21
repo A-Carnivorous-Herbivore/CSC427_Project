@@ -153,14 +153,14 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
+|      neyroud2     |Research LLM prompting and the framework to use| Wait for preliminary task and then start LLM |
+|          hanqim2      |     Researched map api               |  Implement the map feature      |
+|        hodaa2        |                   Researched map api              |            Implement the map feature           |
+|        sahansy2        |   Researched map api                   |          Work on function of map             |
+|        prithvi7        |      Got assigned task and waiting for preliminary task to finish            | Prep for implementing LLM           |
+|    rudyjin2            |             Got assigned task and waiting for preliminary task to finish                    |          Prep for implementing LLM             |
+|       bw38         |     Researched weather api        |        Finish weather screen               |
+|          ryblake2      |      Researched weather api         |     implement weather details api                   |
 </br>
 
 
