@@ -145,7 +145,7 @@ public class WeatherTest {
     }
 
     @Test
-    public void testShowDetailsButtonClick() {
+    public void testShowDetailsButtonClickCity1() {
         ActivityScenario<AuthActivity> scenario = ActivityScenario.launch(AuthActivity.class);
         onView(withId(R.id.usernameInput))
                 .perform(typeText("Becky"), closeSoftKeyboard());
@@ -174,6 +174,40 @@ public class WeatherTest {
         }
 
         onView(withText("Chicago Weather Details")).check(matches(isDisplayed()));
+
+        scenario.close();
+    }
+
+    @Test
+    public void testShowDetailsButtonClickCity2() {
+        ActivityScenario<AuthActivity> scenario = ActivityScenario.launch(AuthActivity.class);
+        onView(withId(R.id.usernameInput))
+                .perform(typeText("Becky"), closeSoftKeyboard());
+        onView(withId(R.id.passwordInput))
+                .perform(typeText("1234"), closeSoftKeyboard());
+        onView(withId(R.id.loginButton)).perform(click());
+
+
+        try {
+            Thread.sleep(5000); // Wait for 500ms
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        onView(allOf(
+                withText("Show Details"),
+                hasSibling(withText("New York")) // Ensures the button is associated with the city "Chicago"
+        ))
+                .perform(click());
+
+        try {
+            Thread.sleep(5000); // Wait for 500ms
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        onView(withText("New York Weather Details")).check(matches(isDisplayed()));
 
         scenario.close();
     }
