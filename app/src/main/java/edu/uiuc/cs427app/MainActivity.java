@@ -49,7 +49,7 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseFirestore db;
     private ActivityResultLauncher<Intent> personalizeLayoutLauncher;
     private LinearLayout locationsContainer;
-
+    private AlertDialog addCityDialog;
     /*
     This on create instantiates the main activity, especially with regard to applying the theme and connecting to the
     database in order to display the users city list
@@ -160,46 +160,86 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
     This function displays whether a city was added succesfully or not to the city list.
      */
     private void showAddCityDialog() {
-        // Fetch the list of cities
+        // Inflate the custom layout
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_city, null);
+
+        // Find views in the custom layout
+        AutoCompleteTextView cityInput = dialogView.findViewById(R.id.city_input);
+        Button addButton = dialogView.findViewById(R.id.add_button);
+
+        // Set up the AutoCompleteTextView
         List<String> cities = readCitiesFromCsv();
-
-        // Create an AutoCompleteTextView
-        AutoCompleteTextView cityInput = new AutoCompleteTextView(this);
         cityInput.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, cities));
-        cityInput.setHint("Enter or select a city");
 
-
-        // Build the dialog
-        new AlertDialog.Builder(this)
+        // Create the dialog
+        AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("Add New Location")
-                .setMessage("Enter the name of the city:")
-                .setView(cityInput)
-                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                    /**
-                     * Handles the click event for the dialog's positive button.
-                     * Validates the user-entered city name, checks if it exists in the predefined list of cities,
-                     * and either adds the city to the database or shows an appropriate error message.
-                     */
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String cityName = cityInput.getText().toString().trim();
-                        if (!cityName.isEmpty()) {
-                            if (cities.contains(cityName)) {
-                                // Add city to database if it exists in the list
-                                addCityToDatabase(cityName);
-                                Toast.makeText(MainActivity.this, "City name " + cityName, Toast.LENGTH_SHORT).show();
-                            } else {
-                                // Show error message if city is not in the list
-                                Toast.makeText(MainActivity.this, "City not found in the list. Please try again.", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(MainActivity.this, "City name cannot be empty", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
+                .setView(dialogView)
                 .setNegativeButton("Cancel", null)
-                .show();
+                .create();
+
+        // Set up the Add button click listener
+        addButton.setOnClickListener(v -> {
+            String cityName = cityInput.getText().toString().trim();
+            if (!cityName.isEmpty()) {
+                if (cities.contains(cityName)) {
+                    addCityToDatabase(cityName); // Add city to the database
+                    Toast.makeText(this, "City added: " + cityName, Toast.LENGTH_SHORT).show();
+                    dialog.dismiss(); // Close the dialog
+                } else {
+                    Toast.makeText(this, "City not found in the list. Please try again.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "City name cannot be empty", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Show the dialog
+        dialog.show();
     }
+
+    //    private void showAddCityDialog() {
+//        // Fetch the list of cities
+//        List<String> cities = readCitiesFromCsv();
+//
+//        // Create an AutoCompleteTextView
+//        AutoCompleteTextView cityInput = new AutoCompleteTextView(this);
+//        cityInput.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, cities));
+//        cityInput.setHint("Enter or select a city");
+//
+//
+//        // Build the dialog
+//        new AlertDialog.Builder(this)
+//                .setTitle("Add New Location")
+//                .setMessage("Enter the name of the city:")
+//                .setView(cityInput)
+//                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+//                    /**
+//                     * Handles the click event for the dialog's positive button.
+//                     * Validates the user-entered city name, checks if it exists in the predefined list of cities,
+//                     * and either adds the city to the database or shows an appropriate error message.
+//                     */
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(MainActivity.this, "Hit that fuking god damn button", Toast.LENGTH_SHORT).show();
+//                        String cityName = cityInput.getText().toString().trim();
+//                        if (!cityName.isEmpty()) {
+//                            if (cities.contains(cityName)) {
+//                                // Add city to database if it exists in the list
+//                                addCityToDatabase(cityName);
+//                                Toast.makeText(MainActivity.this, "City name " + cityName, Toast.LENGTH_SHORT).show();
+//                            } else {
+//                                // Show error message if city is not in the list
+//                                Toast.makeText(MainActivity.this, "City not found in the list. Please try again.", Toast.LENGTH_SHORT).show();
+//                            }
+//                        } else {
+//                            Toast.makeText(MainActivity.this, "City name cannot be empty", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                })
+//                .setNegativeButton("Cancel", null)
+//                .show();
+//    }
     /*
     This function adds the city to the users city list by querying the database, returning an error message if it is
     not successful
@@ -277,6 +317,9 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
 
         // Remove Button
         Button removeButton = new Button(this);
+
+        removeButton.setContentDescription(cityName+"Button");
+
         removeButton.setText("Remove");
         removeButton.setBackgroundResource(R.drawable.rounded_button);
         removeButton.setOnClickListener(v -> {
@@ -377,5 +420,11 @@ This function parses through the cities_list.csv and gets the list of cities
         }
         return cities;
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (addCityDialog != null && addCityDialog.isShowing()) {
+            addCityDialog.dismiss();
+        }
+    }
 }
