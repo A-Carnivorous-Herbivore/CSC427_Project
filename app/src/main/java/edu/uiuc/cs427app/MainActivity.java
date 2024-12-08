@@ -317,6 +317,9 @@ MainActivity extends AppCompatActivity implements View.OnClickListener {
 
         // Remove Button
         Button removeButton = new Button(this);
+
+        removeButton.setContentDescription(cityName+"Button");
+
         removeButton.setText("Remove");
         removeButton.setBackgroundResource(R.drawable.rounded_button);
         removeButton.setOnClickListener(v -> {
