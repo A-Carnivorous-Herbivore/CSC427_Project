@@ -82,6 +82,30 @@ public class AuthActivityTest {
         // Assert that MainActivity is displayed by checking for a unique view
         onView(withId(R.id.buttonLogout)).check(matches(ViewMatchers.isDisplayed()));
     }
+    @Test
+    public void testUserLogoffSuccess() {
+        // Enter valid credentials
+        onView(withId(R.id.usernameInput))
+                .perform(typeText("Rudy"), closeSoftKeyboard());
+        onView(withId(R.id.passwordInput))
+                .perform(typeText("1234"), closeSoftKeyboard());
+
+        // Click the login button
+        onView(withId(R.id.loginButton)).perform(click());
+        try {
+            Thread.sleep(5000); // Wait for 5 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // Assert that MainActivity is displayed by checking for a unique view
+        onView(withId(R.id.loginButton)).perform(click());
+        try {
+            Thread.sleep(5000); // Wait for 5 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        onView(withId(R.id.loginButton)).check(matches(ViewMatchers.isDisplayed()));
+    }
 
     @Test
     public void testUserLoginFailure() {
