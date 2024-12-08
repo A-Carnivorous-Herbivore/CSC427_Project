@@ -188,18 +188,18 @@ the map is doen and now the LLM interaction needs to be created. We planned to m
 </br>
 Members present: List the NetID of the people who attended the meeting
 </br>
-Meeting notes: Explain the overall team progress and a summary of discussion
+Meeting notes: Discussed more tidbits to do with best practices in working with a group. We also decided preliminary group divisons
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
+| hanqim2        |   Finished milestone    | Research espresso and adnroid testing|
+| rudyjin2       |   Finished milestone   |Research espresso and adnroid testing|
+| sahansy2       |  Finished milestone  | Research espresso and adnroid testing |
+|        neyroud2        |         Finished milestone                     |       Research espresso and adnroid testing         |
+|      ryblake2  |  Finished milestone           |   Research espresso and adnroid testing|
+|        hodaa2  |  Finished milestone  | Research espresso and adnroid testing|
+|  prithvi7      |  Finished milestone | Research espresso and adnroid testing  |
+
 </br>
 
 
@@ -207,14 +207,14 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 </br>
 Members present: List the NetID of the people who attended the meeting
 </br>
-Meeting notes: Explain the overall team progress and a summary of discussion
+Meeting notes: Did not meet for thanksgiving break
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
-|                |                                 |                       |
+|                | Did not meet for thanksgiving break |                       |
 |                |                                 |                       |
 |                |                                 |                       |
 |                |                                 |                       |
@@ -226,18 +226,18 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 </br>
 Members present: List the NetID of the people who attended the meeting
 </br>
-Meeting notes: Explain the overall team progress and a summary of discussion
+Meeting notes: Went over best testing practices and how we should make test.
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
+| hanqim2        |   researched espresso     | Commence working on weather|
+| rudyjin2       |  researched espresso   |commence work on sign in and off, and log off  |
+| sahansy2       | researched espresso  | commenced weather insight test |
+|        neyroud2        |        researched espresso                      |         commence work on sign in and off, and log off            |
+|      ryblake2  | researched espresso             |   commenced weather insight test |
+|        hodaa2  | researched espresso | Commence working on weather|
+|  prithvi7      | researched espresso| commence work on sign in and off, and log off  |
+
 </br>
 
 
@@ -249,12 +249,12 @@ Meeting notes: Explain the overall team progress and a summary of discussion
 </br>
 | NetID          | Progress from last week         | Tasks for next week   |
 | ---------------| --------------------------------| ----------------------|
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
-|                |                                 |                       |
+| hanqim2        |   finished weather tests     | Push final task to be merged|
+| rudyjin2       |  finished sign up/in/off tests and location  |Push final task to be merged  |
+| sahansy2       | finished weather | Push final task to be merged |
+|        neyroud2        |         finished sign up sign in log off                      |          Push final task to be merged             |
+|      ryblake2  | Added espresso into weather             |  Push final task to be merged  |
+|        hodaa2  | finished weather test| Push final task to be merged|
+|  prithvi7      | finished sign up sign in log off| Push final task to be merged |
+|      bw38      |   pushed location branch      |  Push final task to be merged  |
 </br>
